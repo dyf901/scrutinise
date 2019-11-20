@@ -146,7 +146,7 @@ public class StaffController {
         }
     }
 
-    @ApiOperation(value = "修改个人资料(Ap)",notes = "")
+    @ApiOperation(value = "修改个人资料(App)",notes = "")
     @PostMapping("/upd_staff_app")
     public boolean upd_staff_app(@RequestBody Map map){
         return staffDao.upd_staff_app(map)==1;
