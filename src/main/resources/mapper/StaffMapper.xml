@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.StaffDao">
+    <!--分页查询员工信息(行查后台)-->
+    <select id="find_staff" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select s.*,c.name as company_name from staff s
+        inner join company c on s.company_id=s.id
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数(行查后台)-->
+    <select id="total" parameterType="java.util.Map" resultType="long">
+        select count(*) from staff
+    </select>
+
+    <!--分页查询员工信息(企业后台)-->
+    <select id="find_staffPc" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select s.*,c.name as company_name from staff s
+        inner join company c on s.company_id=s.id
+        where company_id=#{company_id}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数(企业后台)-->
+    <select id="total_pc" parameterType="java.util.Map" resultType="long">
+        select count(*) from staff where company_id=#{company_id}
+    </select>
+
+    <!--实名认证-->
+    <update id="attestation_staff" parameterType="java.util.Map">
+        update staff set `sex`=#{sex},`name`=#{name},`card`=#{card},`image_z`=#{image_z},`image_f`=#{image_f} where username=#{username}
+    </update>
+
+    <!--修改个人资料_app-->
+    <update id="upd_staff_app" parameterType="java.util.Map">
+        update staff
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="nickname!=null and nickname!=''">
+                `nickname`=#{nickname},
+            </if>
+            <if test="sex!=null">
+                `sex`=#{sex},
+            </if>
+            <if test="age!=null">
+                `age`=#{age},
+            </if>
+            <if test="phone!=null">
+                `phone`=#{phone},
+            </if>
+            <if test="phone!=null">
+                `username`=#{phone},
+            </if>
+            <if test="signature!=null">
+                `signature`=#{signature}
+            </if>
+        </trim>
+        where username=#{username}
+    </update>
+
+    <!--修改个人头像-->
+    <update id="upd_staff_picture" parameterType="java.util.Map">
+        update staff set `picture`=#{picture} where username=#{username}
+    </update>
+
+    <!--入职(公司添加员工)-->
+    <update id="entry_company" parameterType="java.util.Map">
+        update staff set company_id=#{id} where phone=#{phone}
+    </update>
+
+    <!--根据phone查询某个员工信息-->
+    <select id="find_staff_byphone" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
+        select * from staff where phone=#{phone}
+    </select>
+</mapper>

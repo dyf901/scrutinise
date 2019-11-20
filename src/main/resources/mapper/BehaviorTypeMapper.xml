@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.BehaviorTypeDao">
+    <!--分页查询行为类型信息-->
+    <select id="find_behaviortype" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.BehaviorType">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select * from behavior_type
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="total" resultType="long">
+        select count(*) from behavior_type
+    </select>
+
+    <!--增加行为类型信息-->
+    <insert id="add_behaviortype" parameterType="java.util.Map">
+        insert into behavior_type (`behavior_name`,`remake`) values (#{behavior_name},#{remake})
+    </insert>
+
+    <!--修改行为类型信息-->
+    <update id="upd_behaviortype" parameterType="java.util.Map">
+        update behavior_type set behavior_name=#{behavior_name},remake=#{remake} where (id=#{id})
+    </update>
+
+    <!--删除行为类型信息-->
+    <delete id="del_behaviortype" parameterType="java.util.Map">
+        delete from behavior_type where id=#{id}
+    </delete>
+
+    <!--下拉框查询行为类型信息-->
+    <select id="select_behaviortype" resultType="com.zty.scrutinise.entity.BehaviorType">
+        select * from behavior_type
+    </select>
+</mapper>

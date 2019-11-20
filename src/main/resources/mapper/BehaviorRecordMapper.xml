@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.BehaviorRecordDao">
+    <!--分页查询行为记录-->
+    <select id="find_behaviorrecord" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.BehaviorRecord">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select b.*,a.behavior_name as behavior_name,s.name as staff_name,c.name as company_name,s.integral_up as integral_up,s.integral_down as integral_down from behavior_record b
+        inner join behavior_type a on b.bid=a.id
+        inner join staff s on b.sid=s.id
+        inner join company c on b.cid=c.id
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="total" parameterType="java.util.Map" resultType="long">
+        select count(*) from behavior_record
+    </select>
+
+    <!--增加行为记录-->
+    <insert id="add_behaviorrecord" parameterType="java.util.Map">
+        INSERT INTO behavior_record (bid,sid,cid,uptime,integral,PViews,particular)
+        VALUES (#{bid},#{sid},#{cid},now(),#{integral},#{PViews},#{particular})
+    </insert>
+
+    <!--删除行为记录-->
+    <delete id="del_behaviorrecord" parameterType="java.util.Map">
+        delete from behavior_record where id=#{id}
+    </delete>
+
+    <!--个人行为记录报告_行为明细-->
+    <select id="find_record_detail" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.BehaviorRecord">
+        select b.*,a.behavior_name as behavior_name,s.name as staff_name,c.name as company_name from behavior_record b
+        inner join behavior_type a on b.bid=a.id
+        inner join staff s on b.sid=s.id
+        inner join company c on b.cid=c.id
+        WHERE sid=#{sid}
+    </select>
+
+    <!--个人纪录报告_统计数据-->
+    <select id="find_record_statistics" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.BehaviorRecord">
+        select a.behavior_name as behavior_name,count(*) as statistics from behavior_record b
+        inner join behavior_type a on b.bid=a.id
+        WHERE sid=#{sid}
+        GROUP BY bid
+    </select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.IndustryTypeDao">
+    <!--分页查询行业类型信息-->
+    <select id="find_industrytype" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.IndustryType">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select * from industry_type
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="total" resultType="long">
+        select count(*) from industry_type
+    </select>
+
+    <!--增加行业类型信息-->
+    <insert id="add_industrytype" parameterType="java.util.Map">
+        insert into industry_type (`industry_name`,`remake`) values (#{industry_name},#{remake})
+    </insert>
+
+    <!--修改行业类型信息-->
+    <update id="upd_industrytype" parameterType="java.util.Map">
+        update industry_type set industry_name=#{industry_name},remake=#{remake} where (id=#{id})
+    </update>
+
+    <!--删除行业类型信息-->
+    <delete id="del_industrytype" parameterType="java.util.Map">
+        delete from industry_type where id=#{id}
+    </delete>
+
+    <!--下拉框查询行业类型信息-->
+    <select id="select_industrytype" resultType="com.zty.scrutinise.entity.IndustryType">
+        select * from industry_type
+    </select>
+</mapper>
