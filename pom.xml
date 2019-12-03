@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zty</groupId>
-    <artifactId>signature</artifactId>
+    <artifactId>scrutinise</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>signature</name>
+    <name>scrutinise</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

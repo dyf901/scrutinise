@@ -26,4 +26,10 @@ public interface StaffDao {
 
     //修改个人头像
     int upd_staff_picture(Map map);
+
+    //修改实名认证状态
+    int upd_status(Map map);
+
+    //根据username查询某个员工信息
+    Staff find_staff_byusername(Map map);
 }

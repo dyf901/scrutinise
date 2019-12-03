@@ -34,6 +34,11 @@
     <update id="attestation_staff" parameterType="java.util.Map">
         update staff set `sex`=#{sex},`name`=#{name},`card`=#{card},`image_z`=#{image_z},`image_f`=#{image_f} where username=#{username}
     </update>
+    
+    <!--修改实名认证状态-->
+    <update id="upd_status" parameterType="java.util.Map">
+        update staff set `status`=1 where username=#{username}
+    </update>
 
     <!--修改个人资料_app-->
     <update id="upd_staff_app" parameterType="java.util.Map">
@@ -71,8 +76,8 @@
         update staff set company_id=#{id} where phone=#{phone}
     </update>
 
-    <!--根据phone查询某个员工信息-->
-    <select id="find_staff_byphone" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
-        select * from staff where phone=#{phone}
+    <!--根据username查询某个员工信息-->
+    <select id="find_staff_byusername" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
+        select * from staff where username=#{username}
     </select>
 </mapper>

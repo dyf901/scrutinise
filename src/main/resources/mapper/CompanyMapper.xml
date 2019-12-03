@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.CompanyDao">
+    <!--根据公司id查询公司的上下班时间-->
+    <select id="find_worktime" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Company">
+        select in_time,out_time from company where id=#{cid}
+    </select>
+</mapper>

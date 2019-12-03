@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.RegistrationDao">
+    <!--员工签到-->
+    <insert id="add_registartion" parameterType="com.zty.scrutinise.entity.Registration">
+        <selectKey resultType="int" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into registration (`sid`,`cid`,`in_time`,`in_address`) values (#{sid},#{cid},now(),#{in_address})
+    </insert>
+
+    <!--员工签退-->
+    <update id="upd_registration" parameterType="java.util.Map">
+        update registration set `out_time`=now(),`out_address`=#{out_address} where id=#{id}
+    </update>
+
+    <!--根据id查询签到信息-->
+    <select id="find_id" parameterType="int" resultType="com.zty.scrutinise.entity.Registration">
+        select * from registration where id=#{id}
+    </select>
+</mapper>

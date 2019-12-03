@@ -46,4 +46,14 @@ public class StaffService {
     public int upd_staff_picture(Map map){
         return staffDao.upd_staff_picture(map);
     }
+
+    //修改实名认证状态
+    public int upd_status(Map map){
+        return staffDao.upd_status(map);
+    }
+
+    //根据username查询某个员工信息
+    public Staff find_staff_byusername(Map map){
+        return staffDao.find_staff_byusername(map);
+    }
 }

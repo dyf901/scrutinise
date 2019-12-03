@@ -20,12 +20,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Company {
     private int id,industry_id;
     private String name,register_time,license,email,address,principal,principal_phone,principal_card;
+    private String in_time,out_time;
     
     public Company(){
         super();
     }
 
-    public Company(int id, int industry_id, String name, String register_time, String license, String email, String address, String principal, String principal_phone, String principal_card) {
+    public Company(int id, int industry_id, String name, String register_time, String license, String email, String address, String principal, String principal_phone, String principal_card, String in_time, String out_time) {
         this.id = id;
         this.industry_id = industry_id;
         this.name = name;
@@ -36,6 +37,8 @@ public class Company {
         this.principal = principal;
         this.principal_phone = principal_phone;
         this.principal_card = principal_card;
+        this.in_time = in_time;
+        this.out_time = out_time;
     }
 
     public int getId() {
@@ -118,6 +121,22 @@ public class Company {
         this.principal_card = principal_card;
     }
 
+    public String getIn_time() {
+        return in_time;
+    }
+
+    public void setIn_time(String in_time) {
+        this.in_time = in_time;
+    }
+
+    public String getOut_time() {
+        return out_time;
+    }
+
+    public void setOut_time(String out_time) {
+        this.out_time = out_time;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
@@ -131,6 +150,8 @@ public class Company {
                 ", principal='" + principal + '\'' +
                 ", principal_phone='" + principal_phone + '\'' +
                 ", principal_card='" + principal_card + '\'' +
+                ", in_time='" + in_time + '\'' +
+                ", out_time='" + out_time + '\'' +
                 '}';
     }
 }
