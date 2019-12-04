@@ -18,8 +18,8 @@ public class RegistartionService implements RegistrationDao {
     }
 
     //员工签退
-    public int upd_registartion(Map map){
-        return registrationDao.upd_registartion(map);
+    public int upd_registartion(Registration registration){
+        return registrationDao.upd_registartion(registration);
     }
 
     @Override

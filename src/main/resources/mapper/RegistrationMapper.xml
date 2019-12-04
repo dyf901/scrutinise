@@ -12,8 +12,8 @@
     </insert>
 
     <!--员工签退-->
-    <update id="upd_registration" parameterType="java.util.Map">
-        update registration set `out_time`=now(),`out_address`=#{out_address} where id=#{id}
+    <update id="upd_registration" parameterType="com.zty.scrutinise.entity.Registration">
+        update registration set `out_time`=now(),`out_address`=#{out_address},`state`=0 where id=#{id}
     </update>
 
     <!--根据id查询签到信息-->

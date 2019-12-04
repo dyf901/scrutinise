@@ -9,7 +9,7 @@ public interface RegistrationDao {
     int add_registartion(Registration registration);
 
     //员工签退
-    int upd_registartion(Map map);
+    int upd_registartion(Registration registration);
 
     //根据id查询签到信息
     Registration find_id(int id);

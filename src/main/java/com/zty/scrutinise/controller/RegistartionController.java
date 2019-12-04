@@ -56,12 +56,10 @@ public class RegistartionController {
         //Date d1 = (Date) simpleDateFormat.parse(company.getIn_time());
         //指定日期  
         Calendar cal = simpleDateFormat.getCalendar();
-        //当前时间  
-        Calendar cas = Calendar.getInstance();
         int year =cal.get(Calendar.YEAR);//获取年份  
         int month =cal.get(Calendar.MONTH)+1;//获取月份  
         int day=cal.get(Calendar.DATE);//获取日  
-        int hour=cal.get(Calendar.HOUR);//小时  
+        int hour=cal.get(Calendar.HOUR_OF_DAY);//小时  
         int minute=cal.get(Calendar.MINUTE);//分  
         int second=cal.get(Calendar.SECOND);//秒  
         int WeekOfYear = cal.get(Calendar.DAY_OF_WEEK);//一周的第几天  
@@ -86,11 +84,21 @@ public class RegistartionController {
         registration.setSid((Integer) map.get("sid"));
         registration.setIn_address((String) map.get("in_address"));
         Company company=companyDao.find_worktime(map);//根据公司id查询公司上下班时间
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());//设置时间格式
-        long in_time = simpleDateFormat.parse(company.getIn_time()).getTime();//把公司上班时间转换为毫秒数
+        DateFormat df = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         long current=System.currentTimeMillis();//当前时间毫秒数
         long zero=current/(1000*3600*24)*(1000*3600*24)-TimeZone.getDefault().getRawOffset();//今天零点零分零秒的毫秒数
-        if(current<in_time&&current>zero){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());//设置时间格式
+        long in_time = simpleDateFormat.parse(company.getIn_time()).getTime();//把公司上班时间转换为毫秒数
+        Calendar cal = simpleDateFormat.getCalendar();
+        int hour=cal.get(Calendar.HOUR_OF_DAY);//小时  
+        int minute=cal.get(Calendar.MINUTE);//分  
+        int second=cal.get(Calendar.SECOND);//秒  
+        String sss=hour+":"+minute+":"+second;
+        System.out.println("规定上班时间"+sss);
+        String s1 =df.format(new Timestamp(current));
+        System.out.println("打卡时间"+s1);
+        System.out.println(current>zero);
+        if(df.parse(s1).getTime() < df.parse(sss).getTime()&&current > zero){
             int s=registrationDao.add_registartion(registration);//添加打卡记录
             System.out.println(registration.getId());//输出最近添加的打卡记录id
             registrationDao.find_id(registration.getId());//通过返回的id查找记录
@@ -98,7 +106,7 @@ public class RegistartionController {
             msg.setData(registrationDao.find_id(registration.getId()));//放入返回数组里面保存传给前台
             msg.setMessage("签到成功");
             return msg;
-        }else if(current>in_time&&current>zero) {
+        }else {
             int s=registrationDao.add_registartion(registration);
             System.out.println("sass:"+registration.getId());
             registrationDao.find_id(registration.getId());
@@ -107,14 +115,42 @@ public class RegistartionController {
             msg.setMessage("迟到");
             return msg;
         }
-        return msg;
     }
 
     @ApiOperation(value = "员工签退",notes = "")
     @PostMapping("/upd_registartion")
-    public Msg upd_registartion(@RequestBody Map map){
+    public Msg upd_registartion(@RequestBody Map map) throws ParseException {
         Msg msg=new Msg();
-        return msg;
+        Registration registration=new Registration();
+        registration.setCid((Integer) map.get("id"));
+        registration.setIn_address((String) map.get("out_address"));
+        Company company=companyDao.find_worktime(map);//根据公司id查询公司上下班时间
+        DateFormat df = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        long current=System.currentTimeMillis();//当前时间毫秒数
+        long zero=current/(1000*3600*24)*(1000*3600*24)-TimeZone.getDefault().getRawOffset();//今天零点零分零秒的毫秒数
+        long twelve=zero+24*60*60*1000-1;//今天23点59分59秒的毫秒数
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());//设置时间格式
+        long in_time = simpleDateFormat.parse(company.getOut_time()).getTime();//把公司上班时间转换为毫秒数
+        Calendar cal = simpleDateFormat.getCalendar();
+        int hour=cal.get(Calendar.HOUR_OF_DAY);//小时  
+        int minute=cal.get(Calendar.MINUTE);//分  
+        int second=cal.get(Calendar.SECOND);//秒  
+        String sss=hour+":"+minute+":"+second;
+        System.out.println("规定下班时间"+sss);
+        String s1 =df.format(new Timestamp(current));
+        System.out.println("打卡时间"+s1);
+        System.out.println(current>zero);
+        if(df.parse(s1).getTime() > df.parse(sss).getTime()&&current < twelve){
+            registrationDao.upd_registartion(registration);//签退
+            msg.setData(registrationDao.find_id(registration.getId()));
+            msg.setMessage("签退成功");
+            return msg;
+        }else {
+            registrationDao.upd_registartion(registration);
+            msg.setData(registrationDao.find_id(registration.getId()));
+            msg.setMessage("早退");
+            return msg;
+        }
     }
 
 }

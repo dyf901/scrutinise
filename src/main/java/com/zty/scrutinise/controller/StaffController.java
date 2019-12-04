@@ -161,13 +161,24 @@ public class StaffController {
 
     @ApiOperation(value = "修改个人资料(App)",notes = "")
     @PostMapping("/upd_staff_app")
-    public boolean upd_staff_app(@RequestBody Map map){
-        return staffDao.upd_staff_app(map)==1;
+    public Msg upd_staff_app(@RequestBody Map map){
+        int i=staffDao.upd_staff_app(map);
+        Msg msg = new Msg();
+        if (i==1){
+            msg.setMessage("修改成功");
+            return msg;
+        }else {
+            msg.setMessage("修改失败");
+            return msg;
+        }
+
+
     }
 
     @ApiOperation(value = "修改个人头像",notes = "")
     @PostMapping("/upd_staff_picture")
-    public boolean upd_staff_picture(@RequestParam("file") MultipartFile file, Staff staff){
+    public Msg upd_staff_picture(@RequestParam("file") MultipartFile file, Staff staff){
+        Msg msg = new Msg();
         Map map=new HashMap();
         map.put("username",staff.getUsername());
         String oldFileName = file.getOriginalFilename();
@@ -180,11 +191,18 @@ public class StaffController {
                         + newName);
         try {
             file.transferTo(excelFile);
-            return staffDao.upd_staff_picture(map)==1;
+            int i=staffDao.upd_staff_picture(map);
+            if (i==1){
+                msg.setMessage("修改成功");
+                return msg;
+            }else {
+                msg.setMessage("修改失败");
+                return msg;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        return msg;
     }
 }
 
