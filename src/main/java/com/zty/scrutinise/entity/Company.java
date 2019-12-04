@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * address   企业地址
 * principal   企业负责人
 * principal_phone      负责人联系电话
-* principal_card     负责人身份证号
+* principal_card     负责人身份证号ss
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company {
