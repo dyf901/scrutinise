@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.DepartmentDao">
+    <!--分页查询部门信息-->
+    <select id="find_department" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Department">
+        <bind name="page" value="pageSize*(pageNO-1)"></bind>
+        select * from department
+        <where>
+            company_id=#{company_id}
+        <if test="department_name!=null and department_name!=''">
+            and department_name like concat("%",#{department_name},"%")
+        </if>
+        <if test="department_person!=null and department_person!=''">
+            and department_person like concat("%",#{department_person},"%")
+        </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总数-->
+    <select id="total" parameterType="java.util.Map" resultType="long">
+        select count (*) from department
+        <where>
+            company_id=#{company_id}
+            <if test="department_name!=null and department_name!=''">
+                and department_name like concat("%",#{department_name},"%")
+            </if>
+            <if test="department_person!=null and department_person!=''">
+                and department_person like concat("%",#{department_person},"%")
+            </if>
+        </where>
+    </select>
+
+    <!--增加部门信息-->
+    <insert id="add_department" parameterType="java.util.Map">
+        insert into department (`company_id`,`department_name`,`department_number`,`department_person`,`department_headphone`,`create_time`,`remake`)
+        values (#{company_id},#{department_name},#{department_number},#{department_person},#{department_headphone},now(),#{remake},)
+    </insert>
+
+    <!--修改部门信息-->
+    <update id="upd_department" parameterType="java.util.Map">
+        update department set `department_name`=#{department_name},`department_number`=#{department_number},`department_person`=#{department_person},`department_headphone`=#{department_headphone},`remake`=#{remake}
+        where id=#{id}
+    </update>
+
+    <!--删除部门信息-->
+    <delete id="del_department" parameterType="java.util.Map">
+        delete from department where id=#{id}
+    </delete>
+</mapper>

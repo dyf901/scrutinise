@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * 部门表实体类
 * department   部门表
 * id           部门id
+* company_id   公司id
 * department_name    部门名称
 * department_number  部门编号
 * department_person  部门负责人
@@ -16,15 +17,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Department {
-    private int id,department_percount;
+    private int id,company_id,department_percount;
     private String department_name,department_number,department_person,department_headphone,create_time,state;
 
     public Department(){
         super();
     }
 
-    public Department(int id, int department_percount, String department_name, String department_number, String department_person, String department_headphone, String create_time, String state) {
+    public Department(int id, int company_id, int department_percount, String department_name, String department_number, String department_person, String department_headphone, String create_time, String state) {
         this.id = id;
+        this.company_id = company_id;
         this.department_percount = department_percount;
         this.department_name = department_name;
         this.department_number = department_number;
@@ -98,10 +100,19 @@ public class Department {
         this.state = state;
     }
 
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "id=" + id +
+                ", company_id=" + company_id +
                 ", department_percount=" + department_percount +
                 ", department_name='" + department_name + '\'' +
                 ", department_number='" + department_number + '\'' +
