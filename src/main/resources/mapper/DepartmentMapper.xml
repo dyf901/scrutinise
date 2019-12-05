@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zty.scrutinise.dao.DepartmentDao">
-    <!--分页查询部门信息-->
+    <!--分页模糊查询部门信息-->
     <select id="find_department" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Department">
         <bind name="page" value="pageSize*(pageNO-1)"></bind>
         select * from department
@@ -36,7 +36,7 @@
     <!--增加部门信息-->
     <insert id="add_department" parameterType="java.util.Map">
         insert into department (`company_id`,`department_name`,`department_number`,`department_person`,`department_headphone`,`create_time`,`remake`)
-        values (#{company_id},#{department_name},#{department_number},#{department_person},#{department_headphone},now(),#{remake},)
+        values (#{company_id},#{department_name},#{department_number},#{department_person},#{department_headphone},now(),#{remake})
     </insert>
 
     <!--修改部门信息-->
