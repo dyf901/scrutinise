@@ -9,22 +9,26 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * department_id   部门id
 * remake   备注
 * state   状态
+*
+* department_name   部门名称
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Duty {
     private int id,department_id;
     private String duty_name,remake,state;
+    private String department_name;
 
     public Duty(){
         super();
     }
 
-    public Duty(int id, int department_id, String duty_name, String remake, String state) {
+    public Duty(int id, int department_id, String duty_name, String remake, String state, String department_name) {
         this.id = id;
         this.department_id = department_id;
         this.duty_name = duty_name;
         this.remake = remake;
         this.state = state;
+        this.department_name = department_name;
     }
 
     public int getId() {
@@ -67,6 +71,14 @@ public class Duty {
         this.state = state;
     }
 
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
     @Override
     public String toString() {
         return "Duty{" +
@@ -75,6 +87,7 @@ public class Duty {
                 ", duty_name='" + duty_name + '\'' +
                 ", remake='" + remake + '\'' +
                 ", state='" + state + '\'' +
+                ", department_name='" + department_name + '\'' +
                 '}';
     }
 }

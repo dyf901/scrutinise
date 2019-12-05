@@ -42,4 +42,10 @@ public class DepartmentService implements DepartmentDao {
     public int del_department(Map map) {
         return departmentDao.del_department(map);
     }
+
+    //下拉框查询公司部门信息
+    @Override
+    public List<Department> select_department(Map map) {
+        return departmentDao.select_department(map);
+    }
 }

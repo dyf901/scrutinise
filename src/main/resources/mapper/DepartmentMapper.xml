@@ -5,7 +5,7 @@
 <mapper namespace="com.zty.scrutinise.dao.DepartmentDao">
     <!--分页模糊查询部门信息-->
     <select id="find_department" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Department">
-        <bind name="page" value="pageSize*(pageNO-1)"></bind>
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
         select * from department
         <where>
             company_id=#{company_id}
@@ -21,7 +21,7 @@
 
     <!--统计总数-->
     <select id="total" parameterType="java.util.Map" resultType="long">
-        select count (*) from department
+        select count(*) from department
         <where>
             company_id=#{company_id}
             <if test="department_name!=null and department_name!=''">
@@ -49,4 +49,9 @@
     <delete id="del_department" parameterType="java.util.Map">
         delete from department where id=#{id}
     </delete>
+
+    <!--下拉框查询公司部门信息-->
+    <select id="select_department" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Department">
+        select * from department where company_id=#{company_id}
+    </select>
 </mapper>

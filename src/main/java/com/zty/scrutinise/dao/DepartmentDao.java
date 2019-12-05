@@ -20,4 +20,7 @@ public interface DepartmentDao {
 
     //删除部门信息
     int del_department(Map map);
+
+    //下拉框查询公司部门信息
+    List<Department> select_department(Map map);
 }

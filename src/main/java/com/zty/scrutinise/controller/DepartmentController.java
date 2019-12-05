@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Api(description = "部门接口")
@@ -30,7 +31,7 @@ public class DepartmentController {
         return page;
     }
 
-    @ApiOperation(value = "增加部门信息",notes = "{\"company_id\":1,\n" +
+    @ApiOperation(value = "增加部门信息",notes = "测试数据:{\"company_id\":1,\n" +
             "\"department_name\":\"开发部\",\n" +
             "\"department_number\":\"JT001\",\n" +
             "\"department_person\":\"晋铁\",\n" +
@@ -40,7 +41,7 @@ public class DepartmentController {
         return departmentService.add_department(map)==1;
     }
 
-    @ApiOperation(value = "修改部门信息",notes = "{\"id\":1,\n" +
+    @ApiOperation(value = "修改部门信息",notes = "测试数据:{\"id\":1,\n" +
             "\"department_name\":\"开发部\",\n" +
             "\"department_number\":\"JT001\",\n" +
             "\"department_person\":\"晋铁1\",\n" +
@@ -50,9 +51,15 @@ public class DepartmentController {
         return departmentService.upd_department(map)==1;
     }
 
-    @ApiOperation(value = "删除部门信息",notes = "{\"id\":1}")
+    @ApiOperation(value = "删除部门信息",notes = "测试数据:{\"id\":1}")
     @PostMapping("/del_department")
     public boolean del_department(@RequestBody Map map){
         return departmentService.del_department(map)==1;
+    }
+
+    @ApiOperation(value = "下拉框查询公司部门信息",notes = "测试数据:{\"company_id\":1}")
+    @PostMapping("/select_department")
+    public List<Department> select_department(@RequestBody Map map){
+        return departmentService.select_department(map);
     }
 }
