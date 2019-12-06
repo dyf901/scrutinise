@@ -7,4 +7,16 @@
     <select id="find_worktime" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Company">
         select in_time,out_time from company where id=#{cid}
     </select>
+
+    <!--公司注册-->
+    <insert id="add_company" parameterType="com.zty.scrutinise.entity.Company">
+        insert into company (`name`,`abbreviation`,`register_time`,`license`,`email`,`address`,`principal`,`principal_phone`,`principal_card`,`username`,`password`)
+        values (#{name},#{abbreviation},#{register_time},#{license},#{email},#{address},#{principal},#{principal_phone},#{principal_card},#{username},#{password})
+    </insert>
+
+    <!--账号登录-->
+    <select id="login" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Company">
+        select * from company where username=#{username}
+    </select>
+
 </mapper>

@@ -18,18 +18,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * principal_card     负责人身份证号
 * in_time   上班时间
 * out_time   下班时间
+* username   账号
+* password   密码
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company {
     private int id;
     private String name,abbreviation,register_time,license,email,address,principal,principal_phone,principal_card;
-    private String in_time,out_time;
+    private String in_time,out_time,username,password;
     
     public Company(){
         super();
     }
 
-    public Company(int id, String name, String abbreviation, String register_time, String license, String email, String address, String principal, String principal_phone, String principal_card, String in_time, String out_time) {
+    public Company(int id, String name, String abbreviation, String register_time, String license, String email, String address, String principal, String principal_phone, String principal_card, String in_time, String out_time, String username, String password) {
         this.id = id;
         this.name = name;
         this.abbreviation = abbreviation;
@@ -42,6 +44,8 @@ public class Company {
         this.principal_card = principal_card;
         this.in_time = in_time;
         this.out_time = out_time;
+        this.username = username;
+        this.password = password;
     }
 
     public int getId() {
@@ -140,6 +144,22 @@ public class Company {
         this.abbreviation = abbreviation;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
@@ -155,6 +175,8 @@ public class Company {
                 ", principal_card='" + principal_card + '\'' +
                 ", in_time='" + in_time + '\'' +
                 ", out_time='" + out_time + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
