@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.CompanypersonDao">
+    <!--分页模糊查询公司员工信息-->
+    <select id="find_companyperson" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Company_person">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select c.* from company_person c
+        inner join department d on d.id=c.department_id
+        inner join duty a on a.id=c.duty_id
+        <where>
+            <if test="name!=null and name!=''">
+                and `name` like concat("%",#{name},"%")
+            </if>
+            <if test="state!=null and state!=''">
+                and state=#{state}
+            </if>
+            <if test="department_id!=null and department_id!=''">
+                and department_id=#{department_id}
+            </if>
+            <if test="duty_id!=null and duty_id!=''">
+                and duty_id=#{duty_id}
+            </if>
+        </where>
+        limit page,pageSize
+    </select>
+
+    <!--增加企业员工信息-->
+    <insert id="add_companyperson" parameterType="java.util.Map">
+        insert into company_person (`name`,`sex`,`age`,`card`,`phone`,`email`,`address`,`politics_status`,`education`,`specialty`,`school`,`marital_status`,`picture`,`department_id`,`duty_id`)
+        values (#{name},#{sex},#{age},#{card},#{phone},#{email},#{address},#{politics_status},#{education},#{specialty},#{school},#{marital_status},#{picture},#{department_id},#{duty_id})
+    </insert>
+
+    <!--修改企业员工信息-->
+    <update id="upd_companyperson" parameterType="java.util.Map">
+        update company_person set `name`=#{name},`sex`=#{sex},`age`=#{age},`card`=#{card},`phone`=#{phone},`email`=#{email},`address`=#{address},`politics_status`=#{politics_status},`education`=#{education},`specialty`=#{specialty},`school`=#{school},`marital_status`=#{marital_status},`picture`=#{picture},`department_id`=#{department_id},`duty_id`=#{duty_id} where `id`=#{id}
+    </update>
+
+    <!--修改在职状态-->
+    <update id="upd_state" parameterType="java.util.Map">
+        update company_person set `state`=离职 where `id`=#{id}
+    </update>
+</mapper>

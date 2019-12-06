@@ -20,17 +20,22 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * picture   照片
 * department_id   部门id
 * duty_id   职称id
+* state   在职状态
+*
+* department_name   部门名称
+* duty_name     职称名称
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company_person {
     private int id,age,department_id,duty_id;
-    private String name,sex,card,phone,email,address,politics_status,education,specialty,school,marital_status,picture;
+    private String name,sex,card,phone,email,address,politics_status,education,specialty,school,marital_status,picture,state;
+    private String department_name,duty_name;
 
     public Company_person(){
         super();
     }
 
-    public Company_person(int id, int age, int department_id, int duty_id, String name, String sex, String card, String phone, String email, String address, String politics_status, String education, String specialty, String school, String marital_status, String picture) {
+    public Company_person(int id, int age, int department_id, int duty_id, String name, String sex, String card, String phone, String email, String address, String politics_status, String education, String specialty, String school, String marital_status, String picture, String state, String department_name, String duty_name) {
         this.id = id;
         this.age = age;
         this.department_id = department_id;
@@ -47,6 +52,9 @@ public class Company_person {
         this.school = school;
         this.marital_status = marital_status;
         this.picture = picture;
+        this.state = state;
+        this.department_name = department_name;
+        this.duty_name = duty_name;
     }
 
     public int getId() {
@@ -177,6 +185,30 @@ public class Company_person {
         this.picture = picture;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
+    public String getDuty_name() {
+        return duty_name;
+    }
+
+    public void setDuty_name(String duty_name) {
+        this.duty_name = duty_name;
+    }
+
     @Override
     public String toString() {
         return "Company_person{" +
@@ -196,6 +228,9 @@ public class Company_person {
                 ", school='" + school + '\'' +
                 ", marital_status='" + marital_status + '\'' +
                 ", picture='" + picture + '\'' +
+                ", state='" + state + '\'' +
+                ", department_name='" + department_name + '\'' +
+                ", duty_name='" + duty_name + '\'' +
                 '}';
     }
 }
