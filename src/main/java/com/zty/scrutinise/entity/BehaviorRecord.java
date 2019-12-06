@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 *
 * company_name  公司名称
 * company_abbreviation   公司简称
-* statistics   统计数据
+* statistics   统计数据a
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BehaviorRecord {
