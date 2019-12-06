@@ -7,7 +7,7 @@
     <select id="find_duty" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Duty">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
         select d.*, s.department_name as department_name from duty d
-        inner join department s on d.department=s.id
+        inner join department s on d.department_id=s.id
         <where>
             <if test="department_id!=null and department_id!=''">
                 and department_id=#{id}

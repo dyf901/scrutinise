@@ -13,19 +13,23 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * uptime   上传时间
 * integral   积分
 * particular   详细说明
+*
+* company_name  公司名称
+* company_abbreviation   公司简称
+* statistics   统计数据
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BehaviorRecord {
     private int id,bid,sid,cid;
     private String uptime,integral,particular,PViews;
-    private String behavior_name,staff_name,company_name,staff_sex,integral_up,integral_down;
+    private String behavior_name,staff_name,company_name,staff_sex,integral_up,integral_down,company_abbreviation;
     private int statistics;
 
     public BehaviorRecord(){
         super();
     }
 
-    public BehaviorRecord(int id, int bid, int sid, int cid, String uptime, String integral, String particular, String PViews, String behavior_name, String staff_name, String company_name, String staff_sex, String integral_up, String integral_down, int statistics) {
+    public BehaviorRecord(int id, int bid, int sid, int cid, String uptime, String integral, String particular, String PViews, String behavior_name, String staff_name, String company_name, String staff_sex, String integral_up, String integral_down, String company_abbreviation, int statistics) {
         this.id = id;
         this.bid = bid;
         this.sid = sid;
@@ -40,6 +44,7 @@ public class BehaviorRecord {
         this.staff_sex = staff_sex;
         this.integral_up = integral_up;
         this.integral_down = integral_down;
+        this.company_abbreviation = company_abbreviation;
         this.statistics = statistics;
     }
 
@@ -163,6 +168,14 @@ public class BehaviorRecord {
         this.statistics = statistics;
     }
 
+    public String getCompany_abbreviation() {
+        return company_abbreviation;
+    }
+
+    public void setCompany_abbreviation(String company_abbreviation) {
+        this.company_abbreviation = company_abbreviation;
+    }
+
     @Override
     public String toString() {
         return "BehaviorRecord{" +
@@ -180,6 +193,7 @@ public class BehaviorRecord {
                 ", staff_sex='" + staff_sex + '\'' +
                 ", integral_up='" + integral_up + '\'' +
                 ", integral_down='" + integral_down + '\'' +
+                ", company_abbreviation='" + company_abbreviation + '\'' +
                 ", statistics=" + statistics +
                 '}';
     }

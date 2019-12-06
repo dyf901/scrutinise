@@ -8,28 +8,31 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * company   企业信息表
 * id    企业id
 * name   企业名称
+* abbreviation   企业名称简称
 * register_time   注册时间
-* industry_id   行业类型id
+* license   营业执照
 * email    企业邮箱
 * address   企业地址
 * principal   企业负责人
 * principal_phone      负责人联系电话
-* principal_card     负责人身份证号ss
+* principal_card     负责人身份证号
+* in_time   上班时间
+* out_time   下班时间
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company {
-    private int id,industry_id;
-    private String name,register_time,license,email,address,principal,principal_phone,principal_card;
+    private int id;
+    private String name,abbreviation,register_time,license,email,address,principal,principal_phone,principal_card;
     private String in_time,out_time;
     
     public Company(){
         super();
     }
 
-    public Company(int id, int industry_id, String name, String register_time, String license, String email, String address, String principal, String principal_phone, String principal_card, String in_time, String out_time) {
+    public Company(int id, String name, String abbreviation, String register_time, String license, String email, String address, String principal, String principal_phone, String principal_card, String in_time, String out_time) {
         this.id = id;
-        this.industry_id = industry_id;
         this.name = name;
+        this.abbreviation = abbreviation;
         this.register_time = register_time;
         this.license = license;
         this.email = email;
@@ -47,14 +50,6 @@ public class Company {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getIndustry_id() {
-        return industry_id;
-    }
-
-    public void setIndustry_id(int industry_id) {
-        this.industry_id = industry_id;
     }
 
     public String getName() {
@@ -137,12 +132,20 @@ public class Company {
         this.out_time = out_time;
     }
 
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
                 "id=" + id +
-                ", industry_id=" + industry_id +
                 ", name='" + name + '\'' +
+                ", abbreviation='" + abbreviation + '\'' +
                 ", register_time='" + register_time + '\'' +
                 ", license='" + license + '\'' +
                 ", email='" + email + '\'' +
