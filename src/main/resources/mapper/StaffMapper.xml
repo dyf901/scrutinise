@@ -80,4 +80,9 @@
     <select id="find_staff_byusername" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
         select * from staff where username=#{username}
     </select>
+
+    <!--根据身份证号查询用户信息-->
+    <select id="find_staff_bycard" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
+        select * from staff where card=#{card}
+    </select>
 </mapper>

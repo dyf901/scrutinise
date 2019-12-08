@@ -22,7 +22,7 @@ public class CompanypersonController {
     @Autowired
     private CompanypersonService companypersonService;
 
-    @ApiOperation(value = "公司员工分页模糊查询",notes = "")
+    @ApiOperation(value = "公司员工分页模糊查询",notes = "测试数据:{\"pageNo\":1,\"pageSize\":10}")
     @PostMapping("find_companyperson")
     public Page<Company_person> find_companyperson(@RequestBody Map map){
         Page<Company_person> page = new Page<Company_person>();
@@ -33,13 +33,27 @@ public class CompanypersonController {
         return page;
     }
 
-    @ApiOperation(value = "增加企业员工信息",notes = "")
+    @ApiOperation(value = "增加企业员工信息",notes = "测试数据:{\"name\":\"晋铁\",\n" +
+            "\"sex\":\"男\",\n" +
+            "\"age\":23,\n" +
+            "\"card\":\"340111111111111111\",\n" +
+            "\"phone\":\"13000000000\",\n" +
+            "\"email\":\"1300000000@qq.com\",\n" +
+            "\"address\":\"上海市静安区俞泾港路108号\",\n" +
+            "\"politics_status\":\"党员\",\n" +
+            "\"education\":\"本科\",\n" +
+            "\"specialty\":\"信息技术\",\n" +
+            "\"school\":\"上海交通大学\",\n" +
+            "\"marital_status\":\"未婚\",\n" +
+            "\"department_id\":1,\n" +
+            "\"duty_id\":1}")
     @PostMapping("add_companyperson")
     public boolean add_companyperson(@RequestBody Map map){
         return companypersonService.add_companyperson(map)==1;
     }
 
-    @ApiOperation(value = "修改企业员工信息",notes = "")
+    @ApiOperation(value = "修改企业员工信息",notes = "测试数据:{\"name\":\"晋铁1\", \"sex\":\"男\", \"age\":23, \"card\":\"340111111111111111\", \"phone\":\"13000000000\", \"email\":\"1300000000@qq.com\", \"address\":\"上海市静安区俞泾港路108号\", \"politics_status\":\"党员\", \"education\":\"本科\", \"specialty\":\"信息技术\", \"school\":\"上海交通大学\", \"marital_status\":\"未婚\", \"department_id\":1, \"duty_id\":1,\n" +
+            "\"id\":1}")
     @PostMapping("upd_companyperson")
     public boolean upd_companyperson(@RequestBody Map map){
         return companypersonService.upd_companyperson(map)==1;

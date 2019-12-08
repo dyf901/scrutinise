@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * department_id   部门id
 * duty_id   职称id
 * state   在职状态
-*
+* create_time   入职时间
 * department_name   部门名称
 * duty_name     职称名称
 * */
@@ -29,13 +29,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Company_person {
     private int id,age,department_id,duty_id;
     private String name,sex,card,phone,email,address,politics_status,education,specialty,school,marital_status,picture,state;
-    private String department_name,duty_name;
+    private String department_name,duty_name,create_time;
 
     public Company_person(){
         super();
     }
 
-    public Company_person(int id, int age, int department_id, int duty_id, String name, String sex, String card, String phone, String email, String address, String politics_status, String education, String specialty, String school, String marital_status, String picture, String state, String department_name, String duty_name) {
+    public Company_person(int id, int age, int department_id, int duty_id, String name, String sex, String card, String phone, String email, String address, String politics_status, String education, String specialty, String school, String marital_status, String picture, String state, String department_name, String duty_name, String create_time) {
         this.id = id;
         this.age = age;
         this.department_id = department_id;
@@ -55,6 +55,7 @@ public class Company_person {
         this.state = state;
         this.department_name = department_name;
         this.duty_name = duty_name;
+        this.create_time = create_time;
     }
 
     public int getId() {
@@ -209,6 +210,14 @@ public class Company_person {
         this.duty_name = duty_name;
     }
 
+    public String getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(String create_time) {
+        this.create_time = create_time;
+    }
+
     @Override
     public String toString() {
         return "Company_person{" +
@@ -231,6 +240,7 @@ public class Company_person {
                 ", state='" + state + '\'' +
                 ", department_name='" + department_name + '\'' +
                 ", duty_name='" + duty_name + '\'' +
+                ", create_time='" + create_time + '\'' +
                 '}';
     }
 }

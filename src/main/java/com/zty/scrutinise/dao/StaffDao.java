@@ -32,4 +32,7 @@ public interface StaffDao {
 
     //根据username查询某个员工信息
     Staff find_staff_byusername(Map map);
+
+    //根据身份证号查询员工信息
+    Staff find_staff_bycard(Map map);
 }

@@ -7,11 +7,17 @@ import java.util.List;
 import java.util.Map;
 
 public interface BehaviorRecordDao {
-    //分页查询行为记录
+    //分页查询行为记录(行查后台)
     List<BehaviorRecord> find_behaviorrecord(Map map);
 
-    //统计总数
+    //分页查询行为记录(企业后台)
+    List<BehaviorRecord> find_behaviorrecord_q(Map map);
+
+    //统计总数(行查后台)
     long total();
+
+    //统计总数(企业后台)
+    long total_q();
 
     //增加行为记录
     int add_behaviorrecord(Map map);

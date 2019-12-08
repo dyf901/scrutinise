@@ -1,8 +1,10 @@
 package com.zty.scrutinise.controller;
 
 import com.zty.scrutinise.dao.BehaviorRecordDao;
+import com.zty.scrutinise.dao.StaffDao;
 import com.zty.scrutinise.entity.BehaviorRecord;
 import com.zty.scrutinise.entity.Msg;
+import com.zty.scrutinise.entity.Staff;
 import com.zty.scrutinise.page.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +21,10 @@ public class BehaviorRecordController {
     @Autowired
     private BehaviorRecordDao behaviorRecordDao;
 
-    @ApiOperation(value = "分页查询行为记录",notes = "")
+    @Autowired
+    private StaffDao staffDao;
+
+    @ApiOperation(value = "分页查询行为记录(行查后台)",notes = "")
     @PostMapping("/find_behaviorrecord")
     public Page<BehaviorRecord> find_behaviorrecord(@RequestBody Map map){
         Page<BehaviorRecord> page=new Page<BehaviorRecord>();
@@ -30,9 +35,22 @@ public class BehaviorRecordController {
         return page;
     }
 
+    @ApiOperation(value = "分页查询行为记录(企业后台)",notes = "")
+    @PostMapping("/find_behaviorrecord_q")
+    public Page<BehaviorRecord> find_behaviorrecord_q(@RequestBody Map map){
+        Page<BehaviorRecord> page=new Page<BehaviorRecord>();
+        page.setPageNo((Integer) map.get("pageNo"));
+        page.setPageSize((Integer) map.get("pageSize"));
+        page.setTotal(behaviorRecordDao.total_q());
+        page.setItems(behaviorRecordDao.find_behaviorrecord_q(map));
+        return page;
+    }
+
     @ApiOperation(value = "增加行为记录",notes = "")
     @PostMapping("/add_behaviorrecord")
     public boolean add_behaviorrecord(@RequestBody Map map){
+        Staff staff=staffDao.find_staff_bycard(map);
+        map.put("sid",staff.getId());
         return behaviorRecordDao.add_behaviorrecord(map)==1;
     }
 
