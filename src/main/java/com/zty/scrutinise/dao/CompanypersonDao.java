@@ -10,6 +10,9 @@ public interface CompanypersonDao {
     //分页模糊查询公司员工信息
     List<Company_person> find_companyperson(Map map);
 
+    //统计总数
+    long total(Map map);
+
     //增加企业员工信息
     int add_companyperson(Map map);
 

@@ -6,9 +6,9 @@
     <!--分页模糊查询公司员工信息-->
     <select id="find_companyperson" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Company_person">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        select c.* from company_person c
-        inner join department d on d.id=c.department_id
-        inner join duty a on a.id=c.duty_id
+        select p.*,d.department_name as department_name,a.duty_name as duty_name from company_person p
+        inner join department d on d.id=p.department_id
+        inner join duty a on a.id=p.duty_id
         <where>
             <if test="name!=null and name!=''">
                 and `name` like concat("%",#{name},"%")
@@ -24,6 +24,25 @@
             </if>
         </where>
         limit page,pageSize
+    </select>
+
+    <!--统计总数-->
+    <select id="total" parameterType="java.util.Map" resultType="long">
+        select count(*) from company_person
+        <where>
+            <if test="name!=null and name!=''">
+                and `name` like concat("%",#{name},"%")
+            </if>
+            <if test="state!=null and state!=''">
+                and state=#{state}
+            </if>
+            <if test="department_id!=null and department_id!=''">
+                and department_id=#{department_id}
+            </if>
+            <if test="duty_id!=null and duty_id!=''">
+                and duty_id=#{duty_id}
+            </if>
+        </where>
     </select>
 
     <!--增加企业员工信息-->

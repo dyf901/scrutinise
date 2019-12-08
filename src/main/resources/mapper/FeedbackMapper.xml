@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.FeedbackDao">
+    <!--增加反馈信息-->
+    <insert id="add_feedback" parameterType="java.util.Map">
+        insert into feedback (`content`,`picture`,`create_time`,`staff_id`,`remake`) values (#{content},#{picture},now(),#{staff_id},#{remake})
+    </insert>
+</mapper>

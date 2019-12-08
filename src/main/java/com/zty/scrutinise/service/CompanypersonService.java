@@ -20,6 +20,12 @@ public class CompanypersonService implements CompanypersonDao {
         return companypersonDao.find_companyperson(map);
     }
 
+    //统计总数
+    @Override
+    public long total(Map map) {
+        return companypersonDao.total(map);
+    }
+
     //增加企业员工信息
     @Override
     public int add_companyperson(Map map) {
