@@ -43,4 +43,16 @@ public class CompanypersonService implements CompanypersonDao {
     public int upd_state(Map map) {
         return companypersonDao.upd_state(map);
     }
+
+    //统计在职人数
+    @Override
+    public int count_state_z(Map map) {
+        return companypersonDao.count_state_z(map);
+    }
+
+    //统计离职人数
+    @Override
+    public int count_state_l(Map map) {
+        return companypersonDao.count_state_l(map);
+    }
 }

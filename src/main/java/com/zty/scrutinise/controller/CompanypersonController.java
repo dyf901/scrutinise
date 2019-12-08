@@ -85,7 +85,7 @@ public class CompanypersonController {
         return "false";
     }
 
-    @ApiOperation(value = "查找企业员工照片", notes = "测试数据:{\"name\":\"安全行为之星系统.pdf\"}")
+    @ApiOperation(value = "查找企业员工照片", notes = "测试数据:{\"picture\":\"安全行为之星系统.pdf\"}")
     @GetMapping("/find_picture")
     public void find_picture(@RequestParam String picture, HttpServletResponse response) {
         try {
@@ -105,5 +105,17 @@ public class CompanypersonController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @ApiOperation(value = "统计在职人数",notes = "")
+    @PostMapping("count_state_z")
+    public int count_state_z(@RequestBody Map map){
+        return companypersonService.count_state_z(map);
+    }
+
+    @ApiOperation(value = "统计离职人数",notes = "")
+    @PostMapping("count_state_l")
+    public int count_state_l(@RequestBody Map map){
+        return companypersonService.count_state_l(map);
     }
 }

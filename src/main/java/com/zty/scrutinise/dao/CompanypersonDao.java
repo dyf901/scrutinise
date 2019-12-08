@@ -21,4 +21,10 @@ public interface CompanypersonDao {
 
     //修改在职状态
     int upd_state(Map map);
+
+    //统计在职人数
+    int count_state_z(Map map);
+
+    //统计离职人数
+    int count_state_l(Map map);
 }

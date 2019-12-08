@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * picture   照片
 * department_id   部门id
 * duty_id   职称id
+* cid      公司id
 * state   在职状态
 * create_time   入职时间
 * department_name   部门名称
@@ -27,7 +28,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company_person {
-    private int id,age,department_id,duty_id;
+    private int id,age,department_id,duty_id,cid;
     private String name,sex,card,phone,email,address,politics_status,education,specialty,school,marital_status,picture,state;
     private String department_name,duty_name,create_time;
 
@@ -35,11 +36,12 @@ public class Company_person {
         super();
     }
 
-    public Company_person(int id, int age, int department_id, int duty_id, String name, String sex, String card, String phone, String email, String address, String politics_status, String education, String specialty, String school, String marital_status, String picture, String state, String department_name, String duty_name, String create_time) {
+    public Company_person(int id, int age, int department_id, int duty_id, int cid, String name, String sex, String card, String phone, String email, String address, String politics_status, String education, String specialty, String school, String marital_status, String picture, String state, String department_name, String duty_name, String create_time) {
         this.id = id;
         this.age = age;
         this.department_id = department_id;
         this.duty_id = duty_id;
+        this.cid = cid;
         this.name = name;
         this.sex = sex;
         this.card = card;
@@ -218,6 +220,14 @@ public class Company_person {
         this.create_time = create_time;
     }
 
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
     @Override
     public String toString() {
         return "Company_person{" +
@@ -225,6 +235,7 @@ public class Company_person {
                 ", age=" + age +
                 ", department_id=" + department_id +
                 ", duty_id=" + duty_id +
+                ", cid=" + cid +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
                 ", card='" + card + '\'' +

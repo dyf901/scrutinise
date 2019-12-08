@@ -137,7 +137,7 @@ public class StaffController {
         }
     }
 
-    @ApiOperation(value = "查找员工照片", notes = "测试数据:{\"name\":\"安全行为之星系统.pdf\"}")
+    @ApiOperation(value = "查找员工照片", notes = "测试数据:{\"img_url\":\"安全行为之星系统.pdf\"}")
     @GetMapping("/find_img")
     public void find_img(@RequestParam String img_url, HttpServletResponse response) {
         try {
