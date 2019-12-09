@@ -13,12 +13,13 @@ package com.zty.scrutinise.entity;
 public class Registration {
     private int id,sid,cid;
     private String in_time,in_address,out_time,out_address,state;
+    private String company_name;
 
     public Registration(){
         super();
     }
 
-    public Registration(int id, int sid, int cid, String in_time, String in_address, String out_time, String out_address, String state) {
+    public Registration(int id, int sid, int cid, String in_time, String in_address, String out_time, String out_address, String state, String company_name) {
         this.id = id;
         this.sid = sid;
         this.cid = cid;
@@ -27,6 +28,7 @@ public class Registration {
         this.out_time = out_time;
         this.out_address = out_address;
         this.state = state;
+        this.company_name = company_name;
     }
 
     public int getId() {
@@ -93,6 +95,14 @@ public class Registration {
         this.state = state;
     }
 
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
+
     @Override
     public String toString() {
         return "Registration{" +
@@ -104,6 +114,7 @@ public class Registration {
                 ", out_time='" + out_time + '\'' +
                 ", out_address='" + out_address + '\'' +
                 ", state='" + state + '\'' +
+                ", company_name='" + company_name + '\'' +
                 '}';
     }
 }

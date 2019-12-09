@@ -85,4 +85,20 @@
     <select id="find_staff_bycard" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
         select * from staff where card=#{card}
     </select>
+
+    <!--修改所有用户打卡状态-->
+    <update id="upd_clockstatus" parameterType="java.util.Map">
+        UPDATE staff SET clockstatus='1'
+    </update>
+
+    <!--打卡状态修改为签退-->
+    <update id="upd_clockstatus_t" parameterType="java.util.Map">
+        UPDATE staff SET clockstatus='0' where id=#{sid}
+    </update>
+
+    <!--打卡状态修改为签退-->
+    <update id="upd_clockstatus_d" parameterType="java.util.Map">
+        UPDATE staff SET clockstatus='1' where id=#{sid}
+    </update>
+
 </mapper>

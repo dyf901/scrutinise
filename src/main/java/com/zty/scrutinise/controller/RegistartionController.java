@@ -2,6 +2,7 @@ package com.zty.scrutinise.controller;
 
 import com.zty.scrutinise.dao.CompanyDao;
 import com.zty.scrutinise.dao.RegistrationDao;
+import com.zty.scrutinise.dao.StaffDao;
 import com.zty.scrutinise.entity.Company;
 import com.zty.scrutinise.entity.Msg;
 import com.zty.scrutinise.entity.Registration;
@@ -30,6 +31,9 @@ public class RegistartionController {
 
     @Autowired
     private CompanyDao companyDao;
+
+    @Autowired
+    private StaffDao staffDao;
 
     @ApiOperation(value = "测试",notes = "")
     @PostMapping("/text")
@@ -102,6 +106,7 @@ public class RegistartionController {
             int s=registrationDao.add_registartion(registration);//添加打卡记录
             System.out.println(registration.getId());//输出最近添加的打卡记录id
             registrationDao.find_id(registration.getId());//通过返回的id查找记录
+            staffDao.upd_clockstatus_t(map);//修改打开状态为签退
             System.out.println(registrationDao.find_id(registration.getId()));//输出查看
             msg.setData(registrationDao.find_id(registration.getId()));//放入返回数组里面保存传给前台
             msg.setMessage("签到成功");
@@ -110,6 +115,7 @@ public class RegistartionController {
             int s=registrationDao.add_registartion(registration);
             System.out.println("sass:"+registration.getId());
             registrationDao.find_id(registration.getId());
+            staffDao.upd_clockstatus_t(map);
             System.out.println(registrationDao.find_id(registration.getId()));
             msg.setData(registrationDao.find_id(registration.getId()));
             msg.setMessage("迟到");
@@ -122,8 +128,8 @@ public class RegistartionController {
     public Msg upd_registartion(@RequestBody Map map) throws ParseException {
         Msg msg=new Msg();
         Registration registration=new Registration();
-        registration.setCid((Integer) map.get("id"));
-        registration.setIn_address((String) map.get("out_address"));
+        registration.setId((Integer) map.get("id"));
+        registration.setOut_address((String) map.get("out_address"));
         Company company=companyDao.find_worktime(map);//根据公司id查询公司上下班时间
         DateFormat df = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         long current=System.currentTimeMillis();//当前时间毫秒数
@@ -142,11 +148,13 @@ public class RegistartionController {
         System.out.println(current>zero);
         if(df.parse(s1).getTime() > df.parse(sss).getTime()&&current < twelve){
             registrationDao.upd_registartion(registration);//签退
+            staffDao.upd_clockstatus_d(map);//修改签到状态为签到
             msg.setData(registrationDao.find_id(registration.getId()));
             msg.setMessage("签退成功");
             return msg;
         }else {
             registrationDao.upd_registartion(registration);
+            staffDao.upd_clockstatus_d(map);
             msg.setData(registrationDao.find_id(registration.getId()));
             msg.setMessage("早退");
             return msg;

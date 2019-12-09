@@ -12,12 +12,14 @@
     </insert>
 
     <!--员工签退-->
-    <update id="upd_registration" parameterType="com.zty.scrutinise.entity.Registration">
-        update registration set `out_time`=now(),`out_address`=#{out_address},`state`=0 where id=#{id}
+    <update id="upd_registartion" parameterType="com.zty.scrutinise.entity.Registration">
+        update registration set `out_time`=now(),`out_address`=#{out_address} where id=#{id}
     </update>
 
     <!--根据id查询签到信息-->
     <select id="find_id" parameterType="int" resultType="com.zty.scrutinise.entity.Registration">
-        select * from registration where id=#{id}
+        select r.*,s.name as company_name from registration r
+        inner join company s on s.id=r.cid
+        where r.id=#{id}
     </select>
 </mapper>

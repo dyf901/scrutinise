@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * code      验证码
 * status     实名认证状态
 * state   在职状态
+* clockstatus   打卡状态
 * */
 public class Staff {
     private int id,company_id,age;
@@ -31,13 +32,13 @@ public class Staff {
     private int integral_up,integral_down;
     private String company_name;
     private String password,image_z,image_f,picture,nickname,signature,code,status;
-    private String username,phone;
+    private String username,phone,clockstatus;
 
     public Staff(){
         super();
     }
 
-    public Staff(int id, int company_id, int age, String name, String sex, String card, String state, int integral_up, int integral_down, String company_name, String password, String image_z, String image_f, String picture, String nickname, String signature, String code, String status, String username, String phone) {
+    public Staff(int id, int company_id, int age, String name, String sex, String card, String state, int integral_up, int integral_down, String company_name, String password, String image_z, String image_f, String picture, String nickname, String signature, String code, String status, String username, String phone, String clockstatus) {
         this.id = id;
         this.company_id = company_id;
         this.age = age;
@@ -58,6 +59,7 @@ public class Staff {
         this.status = status;
         this.username = username;
         this.phone = phone;
+        this.clockstatus = clockstatus;
     }
 
     public int getId() {
@@ -220,6 +222,14 @@ public class Staff {
         this.sex = sex;
     }
 
+    public String getClockstatus() {
+        return clockstatus;
+    }
+
+    public void setClockstatus(String clockstatus) {
+        this.clockstatus = clockstatus;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
@@ -243,6 +253,7 @@ public class Staff {
                 ", status='" + status + '\'' +
                 ", username='" + username + '\'' +
                 ", phone='" + phone + '\'' +
+                ", clockstatus='" + clockstatus + '\'' +
                 '}';
     }
 }

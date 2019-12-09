@@ -35,4 +35,14 @@ public interface StaffDao {
 
     //根据身份证号查询员工信息
     Staff find_staff_bycard(Map map);
+
+    //修改用户打卡状态
+    int upd_clockstatus();
+
+    //打卡状态修改为签退
+    int upd_clockstatus_t(Map map);
+
+    //打卡状态修改为签到
+    int upd_clockstatus_d(Map map);
+
 }
