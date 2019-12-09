@@ -82,7 +82,7 @@ public class RegistartionController {
     @ApiOperation(value = "员工签到",notes = "")
     @PostMapping("/add_registartion")
     public Msg add_registartion(@RequestBody Map map) throws ParseException {
-        Msg msg=new Msg();
+        Msg msg=new Msg();//
         Registration registration=new Registration();
         registration.setCid((Integer) map.get("cid"));
         registration.setSid((Integer) map.get("sid"));
