@@ -32,13 +32,13 @@ public class Staff {
     private int integral_up,integral_down;
     private String company_name;
     private String password,image_z,image_f,picture,nickname,signature,code,status;
-    private String username,phone,clockstatus;
+    private String username,phone,clockstatus,abbreviation;
 
     public Staff(){
         super();
     }
 
-    public Staff(int id, int company_id, int age, String name, String sex, String card, String state, int integral_up, int integral_down, String company_name, String password, String image_z, String image_f, String picture, String nickname, String signature, String code, String status, String username, String phone, String clockstatus) {
+    public Staff(int id, int company_id, int age, String name, String sex, String card, String state, int integral_up, int integral_down, String company_name, String password, String image_z, String image_f, String picture, String nickname, String signature, String code, String status, String username, String phone, String clockstatus, String abbreviation) {
         this.id = id;
         this.company_id = company_id;
         this.age = age;
@@ -60,6 +60,7 @@ public class Staff {
         this.username = username;
         this.phone = phone;
         this.clockstatus = clockstatus;
+        this.abbreviation = abbreviation;
     }
 
     public int getId() {
@@ -230,6 +231,14 @@ public class Staff {
         this.clockstatus = clockstatus;
     }
 
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
@@ -254,6 +263,7 @@ public class Staff {
                 ", username='" + username + '\'' +
                 ", phone='" + phone + '\'' +
                 ", clockstatus='" + clockstatus + '\'' +
+                ", abbreviation='" + abbreviation + '\'' +
                 '}';
     }
 }

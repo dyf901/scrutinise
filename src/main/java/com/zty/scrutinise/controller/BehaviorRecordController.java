@@ -51,6 +51,7 @@ public class BehaviorRecordController {
     public boolean add_behaviorrecord(@RequestBody Map map){
         Staff staff=staffDao.find_staff_bycard(map);
         map.put("sid",staff.getId());
+        map.put("PViews",(int) (Math.random() * 100));
         return behaviorRecordDao.add_behaviorrecord(map)==1;
     }
 

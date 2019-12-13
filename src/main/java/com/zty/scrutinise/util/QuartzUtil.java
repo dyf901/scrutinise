@@ -13,7 +13,7 @@ public class QuartzUtil {
     private StaffDao staffDao;
 
     //每分钟启动
-    @Scheduled(cron = "0 0/3 * * * ?")
+    @Scheduled(cron = "0 0 0 */1 * ?")
     public void timerToNow(){
         staffDao.upd_clockstatus();
         System.out.println("now time:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
