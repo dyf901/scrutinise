@@ -50,6 +50,21 @@ public class StaffController {
 
     @ApiOperation(value = "实名认证",notes = "")
     @PostMapping("/attestation_staff")
+    public Msg attestation_staff(@RequestBody Map map){
+        Msg msg=new Msg();
+        int i=staffDao.attestation_staff(map);
+        if(i==1){
+            staffDao.upd_status(map);
+            msg.setMessage("认证成功!");
+            return msg;
+        }else {
+            msg.setMessage("认证失败!");
+            return msg;
+        }
+    }
+
+    /*@ApiOperation(value = "实名认证",notes = "")
+    @PostMapping("/attestation_staff")
     public Msg attestation_staff(@RequestParam("files") MultipartFile[] files, Staff staff){
         Msg msg=new Msg();
         Map map=new HashMap();
@@ -135,7 +150,7 @@ public class StaffController {
             msg.setMessage("失败");
             return msg;
         }
-    }
+    }*/
 
     @ApiOperation(value = "查找员工照片", notes = "测试数据:{\"img_url\":\"安全行为之星系统.pdf\"}")
     @GetMapping("/find_img")

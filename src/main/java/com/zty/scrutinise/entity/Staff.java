@@ -30,15 +30,15 @@ public class Staff {
     private int id,company_id,age;
     private String name,sex,card,state;
     private int integral_up,integral_down;
-    private String company_name;
-    private String password,image_z,image_f,picture,nickname,signature,code,status;
+    private String company_name,address;
+    private String password,picture,nickname,signature,code,status;
     private String username,phone,clockstatus,abbreviation;
 
     public Staff(){
         super();
     }
 
-    public Staff(int id, int company_id, int age, String name, String sex, String card, String state, int integral_up, int integral_down, String company_name, String password, String image_z, String image_f, String picture, String nickname, String signature, String code, String status, String username, String phone, String clockstatus, String abbreviation) {
+    public Staff(int id, int company_id, int age, String name, String sex, String card, String state, int integral_up, int integral_down, String company_name, String address, String password, String picture, String nickname, String signature, String code, String status, String username, String phone, String clockstatus, String abbreviation) {
         this.id = id;
         this.company_id = company_id;
         this.age = age;
@@ -49,9 +49,8 @@ public class Staff {
         this.integral_up = integral_up;
         this.integral_down = integral_down;
         this.company_name = company_name;
+        this.address = address;
         this.password = password;
-        this.image_z = image_z;
-        this.image_f = image_f;
         this.picture = picture;
         this.nickname = nickname;
         this.signature = signature;
@@ -141,22 +140,6 @@ public class Staff {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getImage_z() {
-        return image_z;
-    }
-
-    public void setImage_z(String image_z) {
-        this.image_z = image_z;
-    }
-
-    public String getImage_f() {
-        return image_f;
-    }
-
-    public void setImage_f(String image_f) {
-        this.image_f = image_f;
     }
 
     public String getPicture() {
@@ -252,9 +235,8 @@ public class Staff {
                 ", integral_up=" + integral_up +
                 ", integral_down=" + integral_down +
                 ", company_name='" + company_name + '\'' +
+                ", address='" + address + '\'' +
                 ", password='" + password + '\'' +
-                ", image_z='" + image_z + '\'' +
-                ", image_f='" + image_f + '\'' +
                 ", picture='" + picture + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", signature='" + signature + '\'' +
