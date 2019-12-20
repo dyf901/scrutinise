@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * status     实名认证状态
 * state   在职状态
 * clockstatus   打卡状态
+*
+* state_int    饼图数据
 * */
 public class Staff {
     private int id,company_id,age;
@@ -33,12 +35,13 @@ public class Staff {
     private String company_name,address;
     private String password,picture,nickname,signature,code,status;
     private String username,phone,clockstatus,abbreviation;
+    private int state_int;
 
     public Staff(){
         super();
     }
 
-    public Staff(int id, int company_id, int age, String name, String sex, String card, String state, int integral_up, int integral_down, String company_name, String address, String password, String picture, String nickname, String signature, String code, String status, String username, String phone, String clockstatus, String abbreviation) {
+    public Staff(int id, int company_id, int age, String name, String sex, String card, String state, int integral_up, int integral_down, String company_name, String address, String password, String picture, String nickname, String signature, String code, String status, String username, String phone, String clockstatus, String abbreviation, int state_int) {
         this.id = id;
         this.company_id = company_id;
         this.age = age;
@@ -60,6 +63,7 @@ public class Staff {
         this.phone = phone;
         this.clockstatus = clockstatus;
         this.abbreviation = abbreviation;
+        this.state_int = state_int;
     }
 
     public int getId() {
@@ -222,6 +226,14 @@ public class Staff {
         this.abbreviation = abbreviation;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Staff{" +
@@ -246,6 +258,7 @@ public class Staff {
                 ", phone='" + phone + '\'' +
                 ", clockstatus='" + clockstatus + '\'' +
                 ", abbreviation='" + abbreviation + '\'' +
+                ", state_int=" + state_int +
                 '}';
     }
 }

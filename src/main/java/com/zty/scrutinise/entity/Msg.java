@@ -4,15 +4,17 @@ public class Msg {
     private String message;//中文信息
     private Object data;//实体
     private Object statistics;
+    private String code;
 
     public Msg(){
         super();
     }
 
-    public Msg(String message, Object data, Object statistics) {
+    public Msg(String message, Object data, Object statistics, String code) {
         this.message = message;
         this.data = data;
         this.statistics = statistics;
+        this.code = code;
     }
 
     public String getMessage() {
@@ -37,6 +39,14 @@ public class Msg {
 
     public void setStatistics(Object statistics) {
         this.statistics = statistics;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override

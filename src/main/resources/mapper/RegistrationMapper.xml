@@ -22,4 +22,9 @@
         inner join company s on s.id=r.cid
         where r.id=#{id}
     </select>
+
+    <!--查询某个用户的考勤状况(app显示饼图)-->
+    <select id="find_bystate" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Registration">
+        SELECT state,COUNT(*) as asd FROM registration WHERE sid=#{sid} GROUP BY state
+    </select>
 </mapper>

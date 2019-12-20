@@ -2,6 +2,7 @@ package com.zty.scrutinise.dao;
 
 import com.zty.scrutinise.entity.Registration;
 
+import java.util.List;
 import java.util.Map;
 
 public interface RegistrationDao {
@@ -13,4 +14,7 @@ public interface RegistrationDao {
 
     //根据id查询签到信息
     Registration find_id(int id);
+
+    //查询某个用户的考勤状况(app显示饼图)
+    List<Registration> find_bystate(Map map);
 }

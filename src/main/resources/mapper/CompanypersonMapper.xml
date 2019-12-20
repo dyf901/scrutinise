@@ -10,6 +10,7 @@
         inner join department d on d.id=p.department_id
         inner join duty a on a.id=p.duty_id
         <where>
+            p.cid=#{cid}
             <if test="name!=null and name!=''">
                 and `name` like concat("%",#{name},"%")
             </if>
@@ -30,6 +31,7 @@
     <select id="total" parameterType="java.util.Map" resultType="long">
         select count(*) from company_person
         <where>
+            cid=#{cid}
             <if test="name!=null and name!=''">
                 and `name` like concat("%",#{name},"%")
             </if>

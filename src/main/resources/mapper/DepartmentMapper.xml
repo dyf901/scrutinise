@@ -8,7 +8,7 @@
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
         select * from department
         <where>
-            company_id=#{company_id}
+            cid=#{cid}
         <if test="department_name!=null and department_name!=''">
             and department_name like concat("%",#{department_name},"%")
         </if>
@@ -23,7 +23,7 @@
     <select id="total" parameterType="java.util.Map" resultType="long">
         select count(*) from department
         <where>
-            company_id=#{company_id}
+            cid=#{cid}
             <if test="department_name!=null and department_name!=''">
                 and department_name like concat("%",#{department_name},"%")
             </if>
@@ -35,8 +35,8 @@
 
     <!--增加部门信息-->
     <insert id="add_department" parameterType="java.util.Map">
-        insert into department (`company_id`,`department_name`,`department_number`,`department_person`,`department_headphone`,`create_time`,`remake`)
-        values (#{company_id},#{department_name},#{department_number},#{department_person},#{department_headphone},now(),#{remake})
+        insert into department (`cid`,`department_name`,`department_number`,`department_person`,`department_headphone`,`create_time`,`remake`)
+        values (#{cid},#{department_name},#{department_number},#{department_person},#{department_headphone},now(),#{remake})
     </insert>
 
     <!--修改部门信息-->
@@ -52,6 +52,6 @@
 
     <!--下拉框查询公司部门信息-->
     <select id="select_department" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Department">
-        select * from department where company_id=#{company_id}
+        select * from department where cid=#{cid}
     </select>
 </mapper>

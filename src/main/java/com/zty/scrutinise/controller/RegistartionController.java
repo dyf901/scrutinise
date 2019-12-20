@@ -16,10 +16,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 
 @Api(description = "打卡接口")
 @RestController
@@ -103,6 +100,7 @@ public class RegistartionController {
         System.out.println("打卡时间"+s1);
         System.out.println(current>zero);
         if(df.parse(s1).getTime() < df.parse(sss).getTime()&&current > zero){
+            registration.setState("正常");
             int s=registrationDao.add_registartion(registration);//添加打卡记录
             System.out.println(registration.getId());//输出最近添加的打卡记录id
             registrationDao.find_id(registration.getId());//通过返回的id查找记录
@@ -112,6 +110,7 @@ public class RegistartionController {
             msg.setMessage("签到成功");
             return msg;
         }else {
+            registration.setState("迟到");
             int s=registrationDao.add_registartion(registration);
             System.out.println("sass:"+registration.getId());
             registrationDao.find_id(registration.getId());
@@ -153,6 +152,7 @@ public class RegistartionController {
             msg.setMessage("签退成功");
             return msg;
         }else {
+            registration.setState("早退");
             registrationDao.upd_registartion(registration);
             staffDao.upd_clockstatus_d(map);
             msg.setData(registrationDao.find_id(registration.getId()));
@@ -161,4 +161,9 @@ public class RegistartionController {
         }
     }
 
+    @ApiOperation(value = "查询某个用户的考勤状况(app显示饼图)",notes = "")
+    @PostMapping("find_bystate")
+    public List<Registration> find_bystate(@RequestBody Map map){
+        return registrationDao.find_bystate(map);
+    }
 }

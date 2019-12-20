@@ -9,7 +9,7 @@
     </select>
 
     <!--公司注册-->
-    <insert id="add_company" parameterType="com.zty.scrutinise.entity.Company">
+    <insert id="add_company" parameterType="java.util.Map">
         insert into company (`name`,`abbreviation`,`register_time`,`license`,`email`,`address`,`principal`,`principal_phone`,`principal_card`,`username`,`password`)
         values (#{name},#{abbreviation},#{register_time},#{license},#{email},#{address},#{principal},#{principal_phone},#{principal_card},#{username},#{password})
     </insert>

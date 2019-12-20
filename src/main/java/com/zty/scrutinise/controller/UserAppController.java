@@ -42,6 +42,7 @@ public class UserAppController {
             if (staff.getPassword().equals(map.get("password"))) {
                 msg.setData(staff);
                 msg.setMessage("登录成功!");
+                msg.setCode("200");
                 return msg;
             } else {
                 msg.setMessage("密码错误,登录失败!");

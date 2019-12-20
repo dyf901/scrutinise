@@ -9,7 +9,7 @@ public interface CompanyDao {
     Company find_worktime(Map map);
 
     //公司注册
-    int add_company(Company company);
+    int add_company(Map map);
 
     //登录
     Company login(Map map);

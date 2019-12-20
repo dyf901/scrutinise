@@ -52,14 +52,20 @@ public class StaffController {
     @PostMapping("/attestation_staff")
     public Msg attestation_staff(@RequestBody Map map){
         Msg msg=new Msg();
-        int i=staffDao.attestation_staff(map);
-        if(i==1){
-            staffDao.upd_status(map);
-            msg.setMessage("认证成功!");
+        Staff staff=staffDao.find_staff_byusername(map);
+        if(staff.getStatus().equals("1")){
+            msg.setMessage("已实名认证!");
             return msg;
-        }else {
-            msg.setMessage("认证失败!");
-            return msg;
+        }else{
+            int i = staffDao.attestation_staff(map);
+            if (i == 1) {
+                staffDao.upd_status(map);
+                msg.setMessage("认证成功!");
+                return msg;
+            } else {
+                msg.setMessage("认证失败!");
+                return msg;
+            }
         }
     }
 

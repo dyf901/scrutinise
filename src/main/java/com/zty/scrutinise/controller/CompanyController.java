@@ -25,22 +25,9 @@ public class CompanyController {
 
     @ApiOperation(value = "公司注册",notes = "")
     @PostMapping("add_company")
-    public boolean add_company(@RequestParam("file") MultipartFile file, Company company) throws Exception,IOException{
-        String oldFileName = file.getOriginalFilename();
-        int lastDotIndex = oldFileName.lastIndexOf(".");
-        String extName = oldFileName.substring(lastDotIndex);
-        String newName = UUID.randomUUID() + extName;
-        company.setLicense(newName);
-        File excelFile =
-                new File("E:\\Test\\"//   /root/img/
-                        + newName);
-            file.transferTo(excelFile);
-            int i=companyService.add_company(company);
-            if (i==1){
-                return true;
-            }else {
-                return false;
-            }
+    public boolean add_company(@RequestBody Map map) {
+
+        return companyService.add_company(map)==1;
     }
 
     @ApiOperation(value = "登录",notes = "{\"username\":\"admin\",\n" +
@@ -62,5 +49,25 @@ public class CompanyController {
                 return msg;
             }
         }
+    }
+
+    @ApiOperation(value = "营业执照上传",notes = "")
+    @PostMapping("upload")
+    public String picture(@RequestParam("file") MultipartFile file) {
+        String oldFileName = file.getOriginalFilename();
+        int lastDotIndex = oldFileName.lastIndexOf(".");
+        String extName = oldFileName.substring(lastDotIndex);
+        String newName = UUID.randomUUID() + extName;
+        //String newName="http://localhost:8800/staff/find_img?img_url="+oldFileName;
+        File excelFile =
+                new File("E:\\Test\\"//   /root/img/
+                        + newName);
+        try {
+            file.transferTo(excelFile);
+            return newName;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "false";
     }
 }

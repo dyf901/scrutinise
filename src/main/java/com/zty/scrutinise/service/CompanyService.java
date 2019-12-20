@@ -19,8 +19,8 @@ public class CompanyService implements CompanyDao {
 
     //公司注册
     @Override
-    public int add_company(Company company) {
-        return companyDao.add_company(company);
+    public int add_company(Map map) {
+        return companyDao.add_company(map);
     }
 
     //登录

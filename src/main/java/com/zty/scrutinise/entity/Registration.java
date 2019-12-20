@@ -1,5 +1,7 @@
 package com.zty.scrutinise.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*签到表实体类
  * registration   签到表
  * id      id
@@ -9,17 +11,21 @@ package com.zty.scrutinise.entity;
  * in_address   签到地址
  * out_time   签退时间
  * out_address   签退地址
+ *
+ * asd    数量
  * */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Registration {
     private int id,sid,cid;
     private String in_time,in_address,out_time,out_address,state;
     private String company_name;
+    private int asd;
 
     public Registration(){
         super();
     }
 
-    public Registration(int id, int sid, int cid, String in_time, String in_address, String out_time, String out_address, String state, String company_name) {
+    public Registration(int id, int sid, int cid, String in_time, String in_address, String out_time, String out_address, String state, String company_name, int asd) {
         this.id = id;
         this.sid = sid;
         this.cid = cid;
@@ -29,6 +35,7 @@ public class Registration {
         this.out_address = out_address;
         this.state = state;
         this.company_name = company_name;
+        this.asd = asd;
     }
 
     public int getId() {
@@ -101,6 +108,14 @@ public class Registration {
 
     public void setCompany_name(String company_name) {
         this.company_name = company_name;
+    }
+
+    public int getAsd() {
+        return asd;
+    }
+
+    public void setAsd(int asd) {
+        this.asd = asd;
     }
 
     @Override

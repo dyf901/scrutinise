@@ -5,6 +5,7 @@ import com.zty.scrutinise.entity.Registration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -25,5 +26,10 @@ public class RegistartionService implements RegistrationDao {
     @Override
     public Registration find_id(int id) {
         return registrationDao.find_id(id);
+    }
+
+    @Override
+    public List<Registration> find_bystate(Map map) {
+        return registrationDao.find_bystate(map);
     }
 }
