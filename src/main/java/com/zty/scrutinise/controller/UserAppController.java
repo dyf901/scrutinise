@@ -2,6 +2,7 @@ package com.zty.scrutinise.controller;
 
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
+import com.zty.scrutinise.dao.StaffDao;
 import com.zty.scrutinise.dao.UserAppDao;
 import com.zty.scrutinise.entity.Msg;
 import com.zty.scrutinise.entity.Staff;
@@ -27,6 +28,9 @@ public class UserAppController {
     @Autowired
     private UserAppDao userAppDao;
 
+    @Autowired
+    private StaffDao staffDao;
+
     @ApiOperation(value = "登录",notes = "{\"username\":\"admin\",\n" +
             "\"password\":\"123456\"}")
     @PostMapping("/login")
@@ -34,13 +38,14 @@ public class UserAppController {
         System.out.println("账号:"+map.get("username"));
         Msg msg=new Msg();
         Staff staff=userAppDao.findByUsername(map);
+        Staff staff1=staffDao.findBy_Username(map);
         System.out.println("staff:"+staff);
         if (staff == null) {
             msg.setMessage("登录失败,用户不存在!");
             return msg;
         } else {
             if (staff.getPassword().equals(map.get("password"))) {
-                msg.setData(staff);
+                msg.setData(staff1);
                 msg.setMessage("登录成功!");
                 msg.setCode("200");
                 return msg;
@@ -62,6 +67,7 @@ public class UserAppController {
         System.out.println(response.getCode());
         map.put("code",code);
         Staff staff=userAppDao.findByUsername(map);
+        System.out.println("1:"+staff);
         //判断账号是否存在
         if (staff==null){
             userAppDao.add_userapp(map);//不存在创建
@@ -86,12 +92,14 @@ public class UserAppController {
     @ApiOperation(value = "注册账号(完善账号信息)",notes = "")
     @PostMapping("/complete_userapp")
     public Msg complete_userapp(@RequestBody Map map){
+        System.out.println(map);
         Msg msg=new Msg();
         setNickname();
         String nickname=getNickname();
         map.put("nickname",nickname);
         Staff staff=userAppDao.findByUsername(map);
-        if (staff==null){
+        System.out.println("2:"+staff);
+        if (staff!=null){
             if(staff.getCode().equals(map.get("code"))){
                 userAppDao.complete_userapp(map);
                 msg.setMessage("注册成功");

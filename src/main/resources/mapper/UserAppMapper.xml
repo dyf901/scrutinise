@@ -5,9 +5,7 @@
 <mapper namespace="com.zty.scrutinise.dao.UserAppDao">
     <!--根据username查询登录账号信息-->
     <select id="findByUsername" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
-        select s.*,a.name as company_name from staff s
-        inner join company a on s.company_id=a.id
-        where s.username=#{username}
+        select * from staff where username=#{username}
     </select>
 
     <!--保存验证码创建账号-->

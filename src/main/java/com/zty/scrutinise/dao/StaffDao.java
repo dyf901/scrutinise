@@ -45,4 +45,6 @@ public interface StaffDao {
     //打卡状态修改为签到
     int upd_clockstatus_d(Map map);
 
+    //根据username查询登录账号信息
+    Staff findBy_Username(Map map);
 }
