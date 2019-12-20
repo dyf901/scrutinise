@@ -28,9 +28,6 @@ public class UserAppController {
     @Autowired
     private UserAppDao userAppDao;
 
-    @Autowired
-    private StaffDao staffDao;
-
     @ApiOperation(value = "登录",notes = "{\"username\":\"admin\",\n" +
             "\"password\":\"123456\"}")
     @PostMapping("/login")
@@ -38,14 +35,13 @@ public class UserAppController {
         System.out.println("账号:"+map.get("username"));
         Msg msg=new Msg();
         Staff staff=userAppDao.findByUsername(map);
-        Staff staff1=staffDao.findBy_Username(map);
         System.out.println("staff:"+staff);
         if (staff == null) {
             msg.setMessage("登录失败,用户不存在!");
             return msg;
         } else {
             if (staff.getPassword().equals(map.get("password"))) {
-                msg.setData(staff1);
+                msg.setData(staff);
                 msg.setMessage("登录成功!");
                 msg.setCode("200");
                 return msg;
