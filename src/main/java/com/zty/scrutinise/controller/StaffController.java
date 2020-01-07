@@ -165,7 +165,7 @@ public class StaffController {
             BufferedInputStream bis =
                     new BufferedInputStream(
                             new FileInputStream(
-                                    new File("E:\\Test\\" + img_url)));///root/img/
+                                    new File("/root/img/" + img_url)));///root/img/
             int num;
             byte[] b = new byte[1024];
 
@@ -208,7 +208,7 @@ public class StaffController {
         String newName = UUID.randomUUID() + extName;
         map.put("picture", newName);
         File excelFile =
-                new File("E:\\Test\\"//   /root/img/
+                new File("/root/img/"//   /root/img/
                         + newName);
         try {
             file.transferTo(excelFile);

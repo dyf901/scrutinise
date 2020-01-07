@@ -74,7 +74,7 @@ public class CompanypersonController {
         String newName = UUID.randomUUID() + extName;
         //String newName="http://localhost:8800/staff/find_img?img_url="+oldFileName;
         File excelFile =
-                new File("E:\\Test\\"//   /root/img/
+                new File("/root/img/"//   /root/img/
                         + newName);
         try {
             file.transferTo(excelFile);
@@ -92,7 +92,7 @@ public class CompanypersonController {
             BufferedInputStream bis =
                     new BufferedInputStream(
                             new FileInputStream(
-                                    new File("E:\\Test\\" + picture)));///root/img/
+                                    new File("/root/img/" + picture)));///root/img/
             int num;
             byte[] b = new byte[1024];
 

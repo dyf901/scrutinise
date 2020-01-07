@@ -28,4 +28,10 @@ public class CompanyService implements CompanyDao {
     public Company login(Map map) {
         return companyDao.login(map);
     }
+
+    //根据公司id查询公司基本信息
+    @Override
+    public Company find_byid(Map map) {
+        return companyDao.find_byid(map);
+    }
 }

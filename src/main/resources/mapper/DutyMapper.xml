@@ -10,7 +10,7 @@
         inner join department s on d.department_id=s.id
         <where>
             <if test="department_id!=null and department_id!=''">
-                and department_id=#{id}
+                and department_id=#{department_id}
             </if>
             <if test="duty_name!=null and duty_name!=''">
                 and duty_name like concat("%",#{duty_name},"%")

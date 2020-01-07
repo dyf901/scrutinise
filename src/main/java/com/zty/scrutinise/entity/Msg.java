@@ -1,5 +1,8 @@
 package com.zty.scrutinise.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Msg {
     private String message;//中文信息
     private Object data;//实体

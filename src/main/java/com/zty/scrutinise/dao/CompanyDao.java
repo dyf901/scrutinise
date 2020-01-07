@@ -13,4 +13,7 @@ public interface CompanyDao {
 
     //登录
     Company login(Map map);
+
+    //根据公司id查询公司基本信息
+    Company find_byid(Map map);
 }

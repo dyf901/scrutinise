@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 *
 * state_int    饼图数据
 * */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Staff {
     private int id,company_id,age;
     private String name,sex,card,state;

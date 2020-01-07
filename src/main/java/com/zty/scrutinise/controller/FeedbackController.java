@@ -44,7 +44,7 @@ public class FeedbackController {
         String newName = UUID.randomUUID() + extName;
         //String newName="http://localhost:8800/staff/find_img?img_url="+oldFileName;
         File excelFile =
-                new File("E:\\Test\\"//   /root/img/
+                new File("/root/img/"//   /root/img/
                         + newName);
         try {
             file.transferTo(excelFile);

@@ -105,7 +105,7 @@ public class UserAppController {
                 return msg;
             }
         }else {
-            msg.setMessage("账号已注册");
+            msg.setMessage("注册失败");
             return msg;
         }
 

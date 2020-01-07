@@ -60,7 +60,7 @@ public class CompanyController {
         String newName = UUID.randomUUID() + extName;
         //String newName="http://localhost:8800/staff/find_img?img_url="+oldFileName;
         File excelFile =
-                new File("E:\\Test\\"//   /root/img/
+                new File("/root/img/"//   /root/img/
                         + newName);
         try {
             file.transferTo(excelFile);
@@ -69,5 +69,11 @@ public class CompanyController {
             e.printStackTrace();
         }
         return "false";
+    }
+
+    @ApiOperation(value = "根据公司id查询公司基本信息",notes = "")
+    @PostMapping("find_byid")
+    public Company find_byid(@RequestBody Map map){
+        return companyService.find_byid(map);
     }
 }
