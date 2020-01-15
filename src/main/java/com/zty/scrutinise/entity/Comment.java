@@ -10,22 +10,26 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * content   评论内容
 * uptime    评论时间
 *
+* atheme    文章主题
+* snickname     用户昵称
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Comment {
     private int id,aid,sid;
-    private String content,uptime;
+    private String content,uptime,atheme,snickname;
 
     public Comment(){
         super();
     }
 
-    public Comment(int id, int aid, int sid, String content, String uptime) {
+    public Comment(int id, int aid, int sid, String content, String uptime, String atheme, String snickname) {
         this.id = id;
         this.aid = aid;
         this.sid = sid;
         this.content = content;
         this.uptime = uptime;
+        this.atheme = atheme;
+        this.snickname = snickname;
     }
 
     public int getId() {
@@ -68,6 +72,22 @@ public class Comment {
         this.uptime = uptime;
     }
 
+    public String getAtheme() {
+        return atheme;
+    }
+
+    public void setAtheme(String atheme) {
+        this.atheme = atheme;
+    }
+
+    public String getSnickname() {
+        return snickname;
+    }
+
+    public void setSnickname(String snickname) {
+        this.snickname = snickname;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -76,6 +96,8 @@ public class Comment {
                 ", sid=" + sid +
                 ", content='" + content + '\'' +
                 ", uptime='" + uptime + '\'' +
+                ", atheme='" + atheme + '\'' +
+                ", snickname='" + snickname + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.CommentDao">
+    <!--分页模糊查询评论信息-->
+    <select id="find_comment" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Comment">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select c.*,a.theme as atheme,s.nickname as snickname from comment c
+        inner join article a on c.aid=a.id
+        inner join staff s on c.sid=s.id
+        <where>
+            <if test="theme!=null and theme!=''">
+                and a.theme like concat("%",#{theme},"%")
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--统计总条数-->
+    <select id="total" parameterType="java.util.Map" resultType="long">
+        select count(*) from comment c
+        inner join article a on c.aid=a.id
+        inner join staff s on c.sid=s.id
+        <where>
+            <if test="theme!=null and theme!=''">
+                and a.theme like concat("%",#{theme},"%")
+            </if>
+        </where>
+    </select>
+
+    <!--增加评论信息-->
+    <insert id="add_comment" parameterType="java.util.Map">
+        insert into comment (`aid`,`sid`,`content`,`uptime`) values (#{aid},#{sid},#{content},now())
+    </insert>
+
+    <!--删除评论信息-->
+    <delete id="del_comment" parameterType="java.util.Map">
+        delete from comment where id=#{id}
+    </delete>
+</mapper>
