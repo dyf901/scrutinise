@@ -23,4 +23,9 @@
     <select id="find_byid" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Company">
         select * from company where id=#{cid}
     </select>
+
+    <!--根据公司id修改企业上下班时间-->
+    <update id="upd_company_time" parameterType="java.util.Map">
+        update company set in_time=#{in_time},out_time=#{out_time},shift=#{shift} where id=#{cid}
+    </update>
 </mapper>

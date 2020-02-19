@@ -3,9 +3,8 @@ package com.zty.scrutinise.controller;
 import com.zty.scrutinise.dao.CompanyDao;
 import com.zty.scrutinise.dao.RegistrationDao;
 import com.zty.scrutinise.dao.StaffDao;
-import com.zty.scrutinise.entity.Company;
-import com.zty.scrutinise.entity.Msg;
-import com.zty.scrutinise.entity.Registration;
+import com.zty.scrutinise.entity.*;
+import com.zty.scrutinise.service.CompanypersonService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,9 @@ public class RegistartionController {
 
     @Autowired
     private StaffDao staffDao;
+
+    @Autowired
+    private CompanypersonService companypersonService;
 
     @ApiOperation(value = "测试",notes = "")
     @PostMapping("/text")
@@ -80,9 +82,11 @@ public class RegistartionController {
     @PostMapping("/add_registartion")
     public Msg add_registartion(@RequestBody Map map) throws ParseException {
         Msg msg=new Msg();//
+        Staff staff=staffDao.find_staff_sid(map);
+        Company_person company_person=companypersonService.find_company_person_card(map);
         Registration registration=new Registration();
         registration.setCid((Integer) map.get("cid"));
-        registration.setSid((Integer) map.get("sid"));
+        registration.setCpid(company_person.getId());
         registration.setIn_address((String) map.get("in_address"));
         Company company=companyDao.find_worktime(map);//根据公司id查询公司上下班时间
         DateFormat df = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());

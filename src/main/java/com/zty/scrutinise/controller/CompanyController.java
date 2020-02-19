@@ -12,6 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,7 +30,6 @@ public class CompanyController {
     @ApiOperation(value = "公司注册",notes = "")
     @PostMapping("add_company")
     public boolean add_company(@RequestBody Map map) {
-
         return companyService.add_company(map)==1;
     }
 
@@ -75,5 +78,58 @@ public class CompanyController {
     @PostMapping("find_byid")
     public Company find_byid(@RequestBody Map map){
         return companyService.find_byid(map);
+    }
+
+    @ApiOperation(value = "根据公司id修改企业上下班时间",notes = "")
+    @PostMapping("upd_company_time")
+    public boolean upd_company_time(@RequestBody Map map) throws ParseException {
+        //上班时间
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());//设置时间格式
+        long in_time = simpleDateFormat.parse((String) map.get("in_time")).getTime();//把公司上班时间转换为毫秒数
+        Calendar cal = simpleDateFormat.getCalendar();
+        int hour=cal.get(Calendar.HOUR_OF_DAY);//小时  
+        int minute=cal.get(Calendar.MINUTE);//分
+        //下班时间
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());//设置时间格式
+        long out_time = simpleDateFormat1.parse((String) map.get("out_time")).getTime();//把公司上班时间转换为毫秒数
+        Calendar cal1 = simpleDateFormat1.getCalendar();
+        int hour1=cal1.get(Calendar.HOUR_OF_DAY);//小时  
+        int minute1=cal1.get(Calendar.MINUTE);//分
+
+        if(hour<10 && minute<10 && minute1<10){
+            System.out.println("0"+hour+":"+"0"+minute+" ~ "+hour1+":"+"0"+minute1);
+            String a="0"+hour+":"+"0"+minute+" ~ "+hour1+":"+"0"+minute1;
+            System.out.println("1");
+        }else if(hour>=10 && minute<10 && minute1<10){
+            System.out.println(hour+":"+"0"+minute+" ~ "+hour1+":"+"0"+minute1);
+            String a=hour+":"+"0"+minute+" ~ "+hour1+":"+"0"+minute1;
+            System.out.println("2");
+        }else if(hour<10 && minute>=10 && minute1<10){
+            System.out.println("0"+hour+":"+minute+" ~ "+hour1+":"+"0"+minute1);
+            String a="0"+hour+":"+minute+" ~ "+hour1+":"+"0"+minute1;
+            System.out.println("3");
+        }else if(hour<10 && minute<10 && minute1>=10){
+            System.out.println("0"+hour+":"+"0"+minute+" ~ "+hour1+":"+minute1);
+            String a="0"+hour+":"+"0"+minute+" ~ "+hour1+":"+minute1;
+            System.out.println("4");
+        }else if(hour>=10 && minute>=10 && minute1<10){
+            System.out.println(hour+":"+minute+" ~ "+hour1+":"+"0"+minute1);
+            String a=hour+":"+minute+" ~ "+hour1+":"+"0"+minute1;
+            System.out.println("5");
+        }else if(hour>=10 && minute>=10 && minute1>=10){
+            System.out.println(hour+":"+minute+" ~ "+hour1+":"+minute1);
+            String a=hour+":"+minute+" ~ "+hour1+":"+minute1;
+            System.out.println("6");
+        }else if(hour<10 && minute>=10 && minute1>=10){
+            System.out.println("0"+hour+":"+minute+" ~ "+hour1+":"+minute1);
+            String a="0"+hour+":"+minute+" ~ "+hour1+":"+minute1;
+            System.out.println("7");
+        }else if(hour>=10 && minute<10 && minute1>=10){
+            System.out.println(hour+":"+"0"+minute+" ~ "+hour1+":"+minute1);
+            String a=hour+":"+"0"+minute+" ~ "+hour1+":"+minute1;
+            System.out.println("8");
+        }
+        return true;
+        //return companyService.upd_company_time(map)==1;
     }
 }

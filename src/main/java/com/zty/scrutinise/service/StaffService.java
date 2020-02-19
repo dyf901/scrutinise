@@ -56,4 +56,9 @@ public class StaffService {
     public Staff find_staff_byusername(Map map){
         return staffDao.find_staff_byusername(map);
     }
+
+    //根据sid查询用户信息
+    public Staff find_staff_sid(Map map){
+        return staffDao.find_staff_sid(map);
+    }
 }

@@ -16,4 +16,7 @@ public interface CompanyDao {
 
     //根据公司id查询公司基本信息
     Company find_byid(Map map);
+
+    //根据公司id修改企业上下班时间
+    int upd_company_time(Map map);
 }

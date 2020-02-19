@@ -44,4 +44,7 @@ public interface StaffDao {
 
     //打卡状态修改为签到
     int upd_clockstatus_d(Map map);
+
+    //根据sid查询用户信息
+    Staff find_staff_sid(Map map);
 }

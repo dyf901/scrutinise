@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 /*签到表实体类
  * registration   签到表
  * id      id
- * sid     员工id
+ * cpid     企业员工id
  * cid     公司id
  * in_time    签到时间
  * in_address   签到地址
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Registration {
-    private int id,sid,cid;
+    private int id,cpid,cid;
     private String in_time,in_address,out_time,out_address,state;
     private String company_name;
     private int asd;
@@ -25,9 +25,9 @@ public class Registration {
         super();
     }
 
-    public Registration(int id, int sid, int cid, String in_time, String in_address, String out_time, String out_address, String state, String company_name, int asd) {
+    public Registration(int id, int cpid, int cid, String in_time, String in_address, String out_time, String out_address, String state, String company_name, int asd) {
         this.id = id;
-        this.sid = sid;
+        this.cpid = cpid;
         this.cid = cid;
         this.in_time = in_time;
         this.in_address = in_address;
@@ -46,12 +46,12 @@ public class Registration {
         this.id = id;
     }
 
-    public int getSid() {
-        return sid;
+    public int getCpid() {
+        return cpid;
     }
 
-    public void setSid(int sid) {
-        this.sid = sid;
+    public void setCpid(int cpid) {
+        this.cpid = cpid;
     }
 
     public int getCid() {
@@ -122,7 +122,7 @@ public class Registration {
     public String toString() {
         return "Registration{" +
                 "id=" + id +
-                ", sid=" + sid +
+                ", cpid=" + cpid +
                 ", cid=" + cid +
                 ", in_time='" + in_time + '\'' +
                 ", in_address='" + in_address + '\'' +
@@ -130,6 +130,7 @@ public class Registration {
                 ", out_address='" + out_address + '\'' +
                 ", state='" + state + '\'' +
                 ", company_name='" + company_name + '\'' +
+                ", asd=" + asd +
                 '}';
     }
 }

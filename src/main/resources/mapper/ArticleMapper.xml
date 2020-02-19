@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zty.scrutinise.dao.ArticleDao">
+    <!--行差app后端分页查询文章信息-->
+    <select id="find_article" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Article">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select * from article
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--行差app后端分页查询文章信息——统计总数-->
+    <select id="total" resultType="long">
+        select count(*) from article
+    </select>
+
+    <!--行差app根据类型查询文章内容-->
+    <select id="find_article_type" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Article">
+        <bind name="page" value="pageSize*(pageNo-1)"></bind>
+        select * from article a where a.type=#{type}
+        limit #{page},#{pageSize}
+    </select>
+
+    <!--行差app根据类型查询文章内容——统计总数-->
+    <select id="total_type" resultType="long">
+        select count(*) from article a where a.type=#{type}
+    </select>
+
+    <!--增加文章内容-->
+    <insert id="add_article" parameterType="java.util.Map">
+        insert into article (`type`,`theme`,`author`,`content`,`uptime`)
+        values (#{type},#{theme},#{author},#{content},now())
+    </insert>
+
+    <!--删除文章内容-->
+    <delete id="del_article" parameterType="java.util.Map">
+        delete from article where id=#{id}
+    </delete>
+
+    <!--修改文章内容-->
+    <update id="upd_article" parameterType="java.util.Map">
+        update article a set a.type=#{type},a.theme=#{theme},a.author=#{author},a.content=#{content},a.uptime=now() where id=#{id}
+    </update>
+</mapper>

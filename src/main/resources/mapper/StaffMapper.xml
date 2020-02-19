@@ -101,5 +101,8 @@
         UPDATE staff SET clockstatus='1' where id=#{sid}
     </update>
 
-
+    <!--根据sid查询员工信息-->
+    <select id="find_staff_sid" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.Staff">
+        select * from staff where id=#{sid}
+    </select>
 </mapper>

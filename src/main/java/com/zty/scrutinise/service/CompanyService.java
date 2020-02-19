@@ -34,4 +34,10 @@ public class CompanyService implements CompanyDao {
     public Company find_byid(Map map) {
         return companyDao.find_byid(map);
     }
+
+    //根据公司id修改企业上下班时间
+    @Override
+    public int upd_company_time(Map map) {
+        return companyDao.upd_company_time(map);
+    }
 }

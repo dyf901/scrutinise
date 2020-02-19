@@ -55,4 +55,9 @@ public class CompanypersonService implements CompanypersonDao {
     public int count_state_l(Map map) {
         return companypersonDao.count_state_l(map);
     }
+
+    @Override
+    public Company_person find_company_person_card(Map map) {
+        return companypersonDao.find_company_person_card(map);
+    }
 }

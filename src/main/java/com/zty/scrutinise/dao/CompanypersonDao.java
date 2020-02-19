@@ -27,4 +27,7 @@ public interface CompanypersonDao {
 
     //统计离职人数
     int count_state_l(Map map);
+
+    //根据身份证号查询员工信息
+    Company_person find_company_person_card(Map map);
 }

@@ -20,18 +20,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 * out_time   下班时间
 * username   账号
 * password   密码
+* shift      班次
 * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company {
     private int id;
     private String name,abbreviation,register_time,license,email,address,principal,principal_phone,principal_card;
-    private String in_time,out_time,username,password;
+    private String in_time,out_time,username,password,shift;
     
     public Company(){
         super();
     }
 
-    public Company(int id, String name, String abbreviation, String register_time, String license, String email, String address, String principal, String principal_phone, String principal_card, String in_time, String out_time, String username, String password) {
+    public Company(int id, String name, String abbreviation, String register_time, String license, String email, String address, String principal, String principal_phone, String principal_card, String in_time, String out_time, String username, String password, String shift) {
         this.id = id;
         this.name = name;
         this.abbreviation = abbreviation;
@@ -46,6 +47,7 @@ public class Company {
         this.out_time = out_time;
         this.username = username;
         this.password = password;
+        this.shift = shift;
     }
 
     public int getId() {
@@ -160,6 +162,14 @@ public class Company {
         this.password = password;
     }
 
+    public String getShift() {
+        return shift;
+    }
+
+    public void setShift(String shift) {
+        this.shift = shift;
+    }
+
     @Override
     public String toString() {
         return "Company{" +
@@ -177,6 +187,7 @@ public class Company {
                 ", out_time='" + out_time + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", shift='" + shift + '\'' +
                 '}';
     }
 }
