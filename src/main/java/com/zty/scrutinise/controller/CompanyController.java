@@ -99,37 +99,60 @@ public class CompanyController {
         if(hour<10 && minute<10 && minute1<10){
             System.out.println("0"+hour+":"+"0"+minute+" ~ "+hour1+":"+"0"+minute1);
             String a="0"+hour+":"+"0"+minute+" ~ "+hour1+":"+"0"+minute1;
+            map.put("shift",a);
             System.out.println("1");
+            return companyService.upd_company_time(map)==1;
+
         }else if(hour>=10 && minute<10 && minute1<10){
             System.out.println(hour+":"+"0"+minute+" ~ "+hour1+":"+"0"+minute1);
             String a=hour+":"+"0"+minute+" ~ "+hour1+":"+"0"+minute1;
+            map.put("shift",a);
             System.out.println("2");
+            return companyService.upd_company_time(map)==1;
+
         }else if(hour<10 && minute>=10 && minute1<10){
             System.out.println("0"+hour+":"+minute+" ~ "+hour1+":"+"0"+minute1);
             String a="0"+hour+":"+minute+" ~ "+hour1+":"+"0"+minute1;
+            map.put("shift",a);
             System.out.println("3");
+            return companyService.upd_company_time(map)==1;
+
         }else if(hour<10 && minute<10 && minute1>=10){
             System.out.println("0"+hour+":"+"0"+minute+" ~ "+hour1+":"+minute1);
             String a="0"+hour+":"+"0"+minute+" ~ "+hour1+":"+minute1;
+            map.put("shift",a);
             System.out.println("4");
+            return companyService.upd_company_time(map)==1;
+
         }else if(hour>=10 && minute>=10 && minute1<10){
             System.out.println(hour+":"+minute+" ~ "+hour1+":"+"0"+minute1);
             String a=hour+":"+minute+" ~ "+hour1+":"+"0"+minute1;
+            map.put("shift",a);
             System.out.println("5");
+            return companyService.upd_company_time(map)==1;
+
         }else if(hour>=10 && minute>=10 && minute1>=10){
             System.out.println(hour+":"+minute+" ~ "+hour1+":"+minute1);
             String a=hour+":"+minute+" ~ "+hour1+":"+minute1;
+            map.put("shift",a);
             System.out.println("6");
+            return companyService.upd_company_time(map)==1;
+
         }else if(hour<10 && minute>=10 && minute1>=10){
             System.out.println("0"+hour+":"+minute+" ~ "+hour1+":"+minute1);
             String a="0"+hour+":"+minute+" ~ "+hour1+":"+minute1;
+            map.put("shift",a);
             System.out.println("7");
+            return companyService.upd_company_time(map)==1;
+
         }else if(hour>=10 && minute<10 && minute1>=10){
             System.out.println(hour+":"+"0"+minute+" ~ "+hour1+":"+minute1);
             String a=hour+":"+"0"+minute+" ~ "+hour1+":"+minute1;
+            map.put("shift",a);
             System.out.println("8");
+            return companyService.upd_company_time(map)==1;
+        }else {
+            return false;
         }
-        return true;
-        //return companyService.upd_company_time(map)==1;
     }
 }
