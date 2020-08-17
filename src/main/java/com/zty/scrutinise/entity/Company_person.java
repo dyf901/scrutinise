@@ -1,38 +1,39 @@
 package com.zty.scrutinise.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
-* 公司员工表实体类
-* company_person   公司员工信息表
-* id   公司员工id
-* name   姓名
-* sex    性别
-* age    年龄
-* card   身份证号
-* phone  联系电话
-* email  邮箱
-* address   住址
-* politics_status   政治面貌
-* education   学历
-* specialty   专业
-* school   毕业院校
-* marital_status   婚姻状态
-* picture   照片
-* department_id   部门id
-* duty_id   职称id
-* cid      公司id
-* state   在职状态
-* create_time   入职时间
-* department_name   部门名称
-* duty_name     职称名称
-* */
+ * 公司员工表实体类
+ * company_person   公司员工信息表
+ * id   公司员工id
+ * name   姓名
+ * sex    性别
+ * age    年龄
+ * card   身份证号
+ * phone  联系电话
+ * email  邮箱
+ * address   住址
+ * politics_status   政治面貌
+ * education   学历
+ * specialty   专业
+ * school   毕业院校
+ * marital_status   婚姻状态
+ * picture   照片
+ * department_id   部门id
+ * duty_id   职称id
+ * cid      公司id
+ * state   在职状态
+ * create_time   入职时间
+ * department_name   部门名称
+ * duty_name     职称名称
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company_person {
-    private int id,age,department_id,duty_id,cid;
-    private String name,sex,card,phone,email,address,politics_status,education,specialty,school,marital_status,picture,state;
-    private String department_name,duty_name,create_time;
+    private int id, age, department_id, duty_id, cid;
+    private String name, sex, card, phone, email, address, politics_status, education, specialty, school, marital_status, picture, state;
+    private String department_name, duty_name, create_time;
 
-    public Company_person(){
+    public Company_person() {
         super();
     }
 

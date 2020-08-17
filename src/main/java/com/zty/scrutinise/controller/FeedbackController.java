@@ -21,21 +21,21 @@ public class FeedbackController {
     @Autowired
     private FeedbackService feedbackService;
 
-    @ApiOperation(value = "增加反馈信息",notes = "")
+    @ApiOperation(value = "增加反馈信息" , notes = "")
     @PostMapping("add_feedback")
-    public Msg add_feedback(@RequestBody Map map){
+    public Msg add_feedback(@RequestBody Map map) {
         Msg msg = new Msg();
-        int i=feedbackService.add_feedback(map);
-        if (i==1){
+        int i = feedbackService.add_feedback(map);
+        if (i == 1) {
             msg.setMessage("提交成功!");
             return msg;
-        }else {
+        } else {
             msg.setMessage("提交失败!");
             return msg;
         }
     }
 
-    @ApiOperation(value = "反馈图片",notes = "")
+    @ApiOperation(value = "反馈图片" , notes = "")
     @PostMapping("picture")
     public String picture(@RequestParam("file") MultipartFile file) {
         String oldFileName = file.getOriginalFilename();

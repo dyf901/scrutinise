@@ -3,19 +3,19 @@ package com.zty.scrutinise.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
-* 管理端用户表实体类
-*
-* user   管理端用户表
-* id   用户id
-* username   用户账号
-* password   账号密码
-* */
+ * 管理端用户表实体类
+ *
+ * user   管理端用户表
+ * id   用户id
+ * username   用户账号
+ * password   账号密码
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     private int id;
-    private String username,password;
+    private String username, password;
 
-    public User(){
+    public User() {
         super();
     }
 

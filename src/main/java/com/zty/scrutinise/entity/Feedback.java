@@ -1,22 +1,23 @@
 package com.zty.scrutinise.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
-* 反馈信息表实体类
-* feedback   反馈信息表
-* id    反馈信息id
-* content   反馈内容
-* picture   反馈图片
-* create_time   上传时间
-* staff_id    用户id
-* remake    备注
-* */
+ * 反馈信息表实体类
+ * feedback   反馈信息表
+ * id    反馈信息id
+ * content   反馈内容
+ * picture   反馈图片
+ * create_time   上传时间
+ * staff_id    用户id
+ * remake    备注
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Feedback {
-    private int id,staff_id;
-    private String content,picture,create_time,remake;
+    private int id, staff_id;
+    private String content, picture, create_time, remake;
 
-    public Feedback(){
+    public Feedback() {
         super();
     }
 

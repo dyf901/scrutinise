@@ -3,29 +3,29 @@ package com.zty.scrutinise.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
-* 行为记录表实体类
-*
-* behavior_record   行为记录表
-* id   行为记录id
-* bid   行为类型id
-* sid   员工id
-* cid   企业id
-* uptime   上传时间
-* integral   积分
-* particular   详细说明
-*
-* company_name  公司名称
-* company_abbreviation   公司简称
-* statistics   统计数据a
-* */
+ * 行为记录表实体类
+ *
+ * behavior_record   行为记录表
+ * id   行为记录id
+ * bid   行为类型id
+ * sid   员工id
+ * cid   企业id
+ * uptime   上传时间
+ * integral   积分
+ * particular   详细说明
+ *
+ * company_name  公司名称
+ * company_abbreviation   公司简称
+ * statistics   统计数据a
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BehaviorRecord {
-    private int id,bid,sid,cid;
-    private String uptime,integral,particular,PViews;
-    private String behavior_name,staff_name,company_name,staff_sex,integral_up,integral_down,company_abbreviation;
+    private int id, bid, sid, cid;
+    private String uptime, integral, particular, PViews;
+    private String behavior_name, staff_name, company_name, staff_sex, integral_up, integral_down, company_abbreviation;
     private int statistics;
 
-    public BehaviorRecord(){
+    public BehaviorRecord() {
         super();
     }
 

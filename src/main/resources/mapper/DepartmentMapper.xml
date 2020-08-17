@@ -9,12 +9,12 @@
         select * from department
         <where>
             cid=#{cid}
-        <if test="department_name!=null and department_name!=''">
-            and department_name like concat("%",#{department_name},"%")
-        </if>
-        <if test="department_person!=null and department_person!=''">
-            and department_person like concat("%",#{department_person},"%")
-        </if>
+            <if test="department_name!=null and department_name!=''">
+                and department_name like concat("%",#{department_name},"%")
+            </if>
+            <if test="department_person!=null and department_person!=''">
+                and department_person like concat("%",#{department_person},"%")
+            </if>
         </where>
         limit #{page},#{pageSize}
     </select>
@@ -35,13 +35,16 @@
 
     <!--增加部门信息-->
     <insert id="add_department" parameterType="java.util.Map">
-        insert into department (`cid`,`department_name`,`department_number`,`department_person`,`department_headphone`,`create_time`,`remake`)
-        values (#{cid},#{department_name},#{department_number},#{department_person},#{department_headphone},now(),#{remake})
+        insert into department
+        (`cid`,`department_name`,`department_number`,`department_person`,`department_headphone`,`create_time`,`remake`)
+        values
+        (#{cid},#{department_name},#{department_number},#{department_person},#{department_headphone},now(),#{remake})
     </insert>
 
     <!--修改部门信息-->
     <update id="upd_department" parameterType="java.util.Map">
-        update department set `department_name`=#{department_name},`department_number`=#{department_number},`department_person`=#{department_person},`department_headphone`=#{department_headphone},`remake`=#{remake}
+        update department set
+        `department_name`=#{department_name},`department_number`=#{department_number},`department_person`=#{department_person},`department_headphone`=#{department_headphone},`remake`=#{remake}
         where id=#{id}
     </update>
 

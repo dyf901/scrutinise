@@ -1,24 +1,25 @@
 package com.zty.scrutinise.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
-* 评论表实体类
-* comment   评论表
-* id     评论id
-* aid    文章id
-* sid    用户id
-* content   评论内容
-* uptime    评论时间
-*
-* atheme    文章主题
-* snickname     用户昵称
-* */
+ * 评论表实体类
+ * comment   评论表
+ * id     评论id
+ * aid    文章id
+ * sid    用户id
+ * content   评论内容
+ * uptime    评论时间
+ *
+ * atheme    文章主题
+ * snickname     用户昵称
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Comment {
-    private int id,aid,sid;
-    private String content,uptime,atheme,snickname;
+    private int id, aid, sid;
+    private String content, uptime, atheme, snickname;
 
-    public Comment(){
+    public Comment() {
         super();
     }
 

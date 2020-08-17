@@ -19,9 +19,9 @@ public class DutyController {
     @Autowired
     private DutyService dutyService;
 
-    @ApiOperation(value = "分页模糊查询职务信息",notes = "测试数据:{\"pageNo\": 1, \"pageSize\":10}")
+    @ApiOperation(value = "分页模糊查询职务信息" , notes = "测试数据:{\"pageNo\": 1, \"pageSize\":10}")
     @PostMapping("find_duty")
-    public Page<Duty> find_duty(@RequestBody Map map){
+    public Page<Duty> find_duty(@RequestBody Map map) {
         Page<Duty> page = new Page<Duty>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
@@ -30,31 +30,31 @@ public class DutyController {
         return page;
     }
 
-    @ApiOperation(value = "增加职务信息",notes = "测试数据:{\"duty_name\":\"总经理\",\n" +
+    @ApiOperation(value = "增加职务信息" , notes = "测试数据:{\"duty_name\":\"总经理\",\n" +
             "\"department_id\":1,\n" +
             "\"remake\":\"开发部总监\"}")
     @PostMapping("add_duty")
-    public boolean add_duty(@RequestBody Map map){
-        return dutyService.add_duty(map)==1;
+    public boolean add_duty(@RequestBody Map map) {
+        return dutyService.add_duty(map) == 1;
     }
 
-    @ApiOperation(value = "修改职务信息",notes = "测试数据:{\"duty_name\":\"总经理\",\n" +
+    @ApiOperation(value = "修改职务信息" , notes = "测试数据:{\"duty_name\":\"总经理\",\n" +
             "\"remake\":\"开发部总经理\",\n" +
             "\"id\":1}")
     @PostMapping("upd_duty")
-    public boolean upd_duty(@RequestBody Map map){
-        return dutyService.upd_duty(map)==1;
+    public boolean upd_duty(@RequestBody Map map) {
+        return dutyService.upd_duty(map) == 1;
     }
 
-    @ApiOperation(value = "删除职务信息",notes = "测试数据:{\"id\":1}")
+    @ApiOperation(value = "删除职务信息" , notes = "测试数据:{\"id\":1}")
     @PostMapping("del_duty")
-    public boolean del_duty(@RequestBody Map map){
-        return dutyService.del_duty(map)==1;
+    public boolean del_duty(@RequestBody Map map) {
+        return dutyService.del_duty(map) == 1;
     }
 
-    @ApiOperation(value = "下拉框查询部门职务信息",notes = "测试数据:{\"department_id\":1}")
+    @ApiOperation(value = "下拉框查询部门职务信息" , notes = "测试数据:{\"department_id\":1}")
     @PostMapping("select_duty")
-    public List<Duty> select_duty(@RequestBody Map map){
+    public List<Duty> select_duty(@RequestBody Map map) {
         return dutyService.select_duty(map);
     }
 }

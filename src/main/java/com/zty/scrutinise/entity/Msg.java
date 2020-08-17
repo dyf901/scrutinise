@@ -9,7 +9,7 @@ public class Msg {
     private Object statistics;
     private String code;
 
-    public Msg(){
+    public Msg() {
         super();
     }
 

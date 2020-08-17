@@ -13,7 +13,7 @@ public class CompanyService implements CompanyDao {
     private CompanyDao companyDao;
 
     //根据公司id查询上下班时间
-    public Company find_worktime(Map map){
+    public Company find_worktime(Map map) {
         return companyDao.find_worktime(map);
     }
 

@@ -24,10 +24,10 @@ public class BehaviorRecordController {
     @Autowired
     private StaffDao staffDao;
 
-    @ApiOperation(value = "分页查询行为记录(行查后台)",notes = "")
+    @ApiOperation(value = "分页查询行为记录(行查后台)" , notes = "")
     @PostMapping("/find_behaviorrecord")
-    public Page<BehaviorRecord> find_behaviorrecord(@RequestBody Map map){
-        Page<BehaviorRecord> page=new Page<BehaviorRecord>();
+    public Page<BehaviorRecord> find_behaviorrecord(@RequestBody Map map) {
+        Page<BehaviorRecord> page = new Page<BehaviorRecord>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
         page.setTotal(behaviorRecordDao.total());
@@ -35,10 +35,10 @@ public class BehaviorRecordController {
         return page;
     }
 
-    @ApiOperation(value = "分页查询行为记录(企业后台)",notes = "")
+    @ApiOperation(value = "分页查询行为记录(企业后台)" , notes = "")
     @PostMapping("/find_behaviorrecord_q")
-    public Page<BehaviorRecord> find_behaviorrecord_q(@RequestBody Map map){
-        Page<BehaviorRecord> page=new Page<BehaviorRecord>();
+    public Page<BehaviorRecord> find_behaviorrecord_q(@RequestBody Map map) {
+        Page<BehaviorRecord> page = new Page<BehaviorRecord>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
         page.setTotal(behaviorRecordDao.total_q());
@@ -46,25 +46,25 @@ public class BehaviorRecordController {
         return page;
     }
 
-    @ApiOperation(value = "增加行为记录",notes = "")
+    @ApiOperation(value = "增加行为记录" , notes = "")
     @PostMapping("/add_behaviorrecord")
-    public boolean add_behaviorrecord(@RequestBody Map map){
-        Staff staff=staffDao.find_staff_bycard(map);
-        map.put("sid",staff.getId());
-        map.put("PViews",(int) (Math.random() * 100));
-        return behaviorRecordDao.add_behaviorrecord(map)==1;
+    public boolean add_behaviorrecord(@RequestBody Map map) {
+        Staff staff = staffDao.find_staff_bycard(map);
+        map.put("sid" , staff.getId());
+        map.put("PViews" , (int) (Math.random() * 100));
+        return behaviorRecordDao.add_behaviorrecord(map) == 1;
     }
 
-    @ApiOperation(value = "删除行为记录",notes = "")
+    @ApiOperation(value = "删除行为记录" , notes = "")
     @PostMapping("/del_behaviorrecord")
-    public boolean del_behaviorrecord(@RequestBody Map map){
-        return behaviorRecordDao.del_behaviorrecord(map)==1;
+    public boolean del_behaviorrecord(@RequestBody Map map) {
+        return behaviorRecordDao.del_behaviorrecord(map) == 1;
     }
 
-    @ApiOperation(value = "个人行为记录报告",notes = "")
+    @ApiOperation(value = "个人行为记录报告" , notes = "")
     @PostMapping("/find_behaviorrecord_report")
-    public Msg find_behaviorrecord_report(@RequestBody Map map){
-        Msg msg=new Msg();
+    public Msg find_behaviorrecord_report(@RequestBody Map map) {
+        Msg msg = new Msg();
         msg.setData(behaviorRecordDao.find_record_detail(map));
         msg.setStatistics(behaviorRecordDao.find_record_statistics(map));
         System.out.println(behaviorRecordDao.find_record_statistics(map));

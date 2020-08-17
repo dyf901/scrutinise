@@ -5,6 +5,7 @@
 <mapper namespace="com.zty.scrutinise.dao.FeedbackDao">
     <!--增加反馈信息-->
     <insert id="add_feedback" parameterType="java.util.Map">
-        insert into feedback (`content`,`picture`,`create_time`,`staff_id`,`remake`) values (#{content},#{picture},now(),#{staff_id},#{remake})
+        insert into feedback (`content`,`picture`,`create_time`,`staff_id`,`remake`) values
+        (#{content},#{picture},now(),#{staff_id},#{remake})
     </insert>
 </mapper>

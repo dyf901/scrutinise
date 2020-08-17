@@ -20,10 +20,10 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
-    @ApiOperation(value = "分页模糊查询部门信息",notes = "测试数据:{\"pageNo\": 1, \"pageSize\":10}")
+    @ApiOperation(value = "分页模糊查询部门信息" , notes = "测试数据:{\"pageNo\": 1, \"pageSize\":10}")
     @PostMapping("/find_department")
-    public Page<Department> find_department(@RequestBody Map map){
-        Page<Department> page=new Page<Department>();
+    public Page<Department> find_department(@RequestBody Map map) {
+        Page<Department> page = new Page<Department>();
         page.setPageSize((Integer) map.get("pageSize"));
         page.setPageNo((Integer) map.get("pageNo"));
         page.setTotal(departmentService.total(map));
@@ -31,35 +31,35 @@ public class DepartmentController {
         return page;
     }
 
-    @ApiOperation(value = "增加部门信息",notes = "测试数据:{\"company_id\":1,\n" +
+    @ApiOperation(value = "增加部门信息" , notes = "测试数据:{\"company_id\":1,\n" +
             "\"department_name\":\"开发部\",\n" +
             "\"department_number\":\"JT001\",\n" +
             "\"department_person\":\"晋铁\",\n" +
             "\"department_headphone\":\"13000000000\",\"remake\":\"晋铁智能科技开发人员部门\"}")
     @PostMapping("/add_department")
-    public boolean add_department(@RequestBody Map map){
-        return departmentService.add_department(map)==1;
+    public boolean add_department(@RequestBody Map map) {
+        return departmentService.add_department(map) == 1;
     }
 
-    @ApiOperation(value = "修改部门信息",notes = "测试数据:{\"id\":1,\n" +
+    @ApiOperation(value = "修改部门信息" , notes = "测试数据:{\"id\":1,\n" +
             "\"department_name\":\"开发部\",\n" +
             "\"department_number\":\"JT001\",\n" +
             "\"department_person\":\"晋铁1\",\n" +
             "\"department_headphone\":\"13000000000\",\"remake\":\"晋铁智能科技开发人员部门\"}")
     @PostMapping("/upd_department")
-    public boolean upd_department(@RequestBody Map map){
-        return departmentService.upd_department(map)==1;
+    public boolean upd_department(@RequestBody Map map) {
+        return departmentService.upd_department(map) == 1;
     }
 
-    @ApiOperation(value = "删除部门信息",notes = "测试数据:{\"id\":1}")
+    @ApiOperation(value = "删除部门信息" , notes = "测试数据:{\"id\":1}")
     @PostMapping("/del_department")
-    public boolean del_department(@RequestBody Map map){
-        return departmentService.del_department(map)==1;
+    public boolean del_department(@RequestBody Map map) {
+        return departmentService.del_department(map) == 1;
     }
 
-    @ApiOperation(value = "下拉框查询公司部门信息",notes = "测试数据:{\"company_id\":1}")
+    @ApiOperation(value = "下拉框查询公司部门信息" , notes = "测试数据:{\"company_id\":1}")
     @PostMapping("/select_department")
-    public List<Department> select_department(@RequestBody Map map){
+    public List<Department> select_department(@RequestBody Map map) {
         return departmentService.select_department(map);
     }
 }

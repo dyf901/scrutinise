@@ -3,32 +3,32 @@ package com.zty.scrutinise.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
-* 企业信息表实体类
-*
-* company   企业信息表
-* id    企业id
-* name   企业名称
-* abbreviation   企业名称简称
-* register_time   注册时间
-* license   营业执照
-* email    企业邮箱
-* address   企业地址
-* principal   企业负责人
-* principal_phone      负责人联系电话
-* principal_card     负责人身份证号
-* in_time   上班时间
-* out_time   下班时间
-* username   账号
-* password   密码
-* shift      班次
-* */
+ * 企业信息表实体类
+ *
+ * company   企业信息表
+ * id    企业id
+ * name   企业名称
+ * abbreviation   企业名称简称
+ * register_time   注册时间
+ * license   营业执照
+ * email    企业邮箱
+ * address   企业地址
+ * principal   企业负责人
+ * principal_phone      负责人联系电话
+ * principal_card     负责人身份证号
+ * in_time   上班时间
+ * out_time   下班时间
+ * username   账号
+ * password   密码
+ * shift      班次
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Company {
     private int id;
-    private String name,abbreviation,register_time,license,email,address,principal,principal_phone,principal_card;
-    private String in_time,out_time,username,password,shift;
-    
-    public Company(){
+    private String name, abbreviation, register_time, license, email, address, principal, principal_phone, principal_card;
+    private String in_time, out_time, username, password, shift;
+
+    public Company() {
         super();
     }
 

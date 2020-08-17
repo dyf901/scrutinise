@@ -4,9 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zty.scrutinise.dao.BehaviorRecordDao">
     <!--分页查询行为记录(行查后台)-->
-    <select id="find_behaviorrecord" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.BehaviorRecord">
+    <select id="find_behaviorrecord" parameterType="java.util.Map"
+            resultType="com.zty.scrutinise.entity.BehaviorRecord">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        select b.*,a.behavior_name as behavior_name,s.name as staff_name,c.name as company_name,c.abbreviation as company_abbreviation,s.integral_up as integral_up,s.integral_down as integral_down from behavior_record b
+        select b.*,a.behavior_name as behavior_name,s.name as staff_name,c.name as company_name,c.abbreviation as
+        company_abbreviation,s.integral_up as integral_up,s.integral_down as integral_down from behavior_record b
         inner join behavior_type a on b.bid=a.id
         inner join staff s on b.sid=s.id
         inner join company c on b.cid=c.id
@@ -14,9 +16,11 @@
     </select>
 
     <!--分页查询行为记录(企业后台)-->
-    <select id="find_behaviorrecord_q" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.BehaviorRecord">
+    <select id="find_behaviorrecord_q" parameterType="java.util.Map"
+            resultType="com.zty.scrutinise.entity.BehaviorRecord">
         <bind name="page" value="pageSize*(pageNo-1)"></bind>
-        select b.*,a.behavior_name as behavior_name,s.name as staff_name,c.name as company_name,c.abbreviation as company_abbreviation,s.integral_up as integral_up,s.integral_down as integral_down from behavior_record b
+        select b.*,a.behavior_name as behavior_name,s.name as staff_name,c.name as company_name,c.abbreviation as
+        company_abbreviation,s.integral_up as integral_up,s.integral_down as integral_down from behavior_record b
         inner join behavior_type a on b.bid=a.id
         inner join staff s on b.sid=s.id
         inner join company c on b.cid=c.id
@@ -55,7 +59,8 @@
     </select>
 
     <!--个人纪录报告_统计数据-->
-    <select id="find_record_statistics" parameterType="java.util.Map" resultType="com.zty.scrutinise.entity.BehaviorRecord">
+    <select id="find_record_statistics" parameterType="java.util.Map"
+            resultType="com.zty.scrutinise.entity.BehaviorRecord">
         select a.behavior_name as behavior_name,count(*) as statistics from behavior_record b
         inner join behavior_type a on b.bid=a.id
         WHERE sid=#{sid}

@@ -16,16 +16,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Registration {
-    private int id,cpid,cid;
-    private String in_time,in_address,out_time,out_address,state;
-    private String company_name;
+    private int id, cpid, cid;
+    private String in_time, in_address, out_time, out_address, state;
+    private String company_name, remark;
     private int asd;
 
-    public Registration(){
+    public Registration() {
         super();
     }
 
-    public Registration(int id, int cpid, int cid, String in_time, String in_address, String out_time, String out_address, String state, String company_name, int asd) {
+    public Registration(int id, int cpid, int cid, String in_time, String in_address, String out_time, String out_address, String state, String company_name, String remark, int asd) {
         this.id = id;
         this.cpid = cpid;
         this.cid = cid;
@@ -35,6 +35,7 @@ public class Registration {
         this.out_address = out_address;
         this.state = state;
         this.company_name = company_name;
+        this.remark = remark;
         this.asd = asd;
     }
 
@@ -118,9 +119,17 @@ public class Registration {
         this.asd = asd;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
-        return "Registration{" +
+        return "{" +
                 "id=" + id +
                 ", cpid=" + cpid +
                 ", cid=" + cid +
@@ -130,6 +139,7 @@ public class Registration {
                 ", out_address='" + out_address + '\'' +
                 ", state='" + state + '\'' +
                 ", company_name='" + company_name + '\'' +
+                ", remark='" + remark + '\'' +
                 ", asd=" + asd +
                 '}';
     }

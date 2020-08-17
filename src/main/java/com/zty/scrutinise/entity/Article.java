@@ -16,10 +16,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Article {
-    private int id,pageview;
-    private String type,theme,author,content,uptime;
+    private int id, pageview;
+    private String type, theme, author, content, uptime;
 
-    public Article(){
+    public Article() {
         super();
     }
 

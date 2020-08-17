@@ -28,14 +28,14 @@ public class UserAppController {
     @Autowired
     private UserAppDao userAppDao;
 
-    @ApiOperation(value = "登录",notes = "{\"username\":\"admin\",\n" +
+    @ApiOperation(value = "登录" , notes = "{\"username\":\"admin\",\n" +
             "\"password\":\"123456\"}")
     @PostMapping("/login")
     public Msg login(@RequestBody Map map) {
-        System.out.println("账号:"+map.get("username"));
-        Msg msg=new Msg();
-        Staff staff=userAppDao.findByUsername(map);
-        System.out.println("staff:"+staff);
+        System.out.println("账号:" + map.get("username"));
+        Msg msg = new Msg();
+        Staff staff = userAppDao.findByUsername(map);
+        System.out.println("staff:" + staff);
         if (staff == null) {
             msg.setMessage("登录失败,用户不存在!");
             return msg;
@@ -52,32 +52,32 @@ public class UserAppController {
         }
     }
 
-    @ApiOperation(value = "获取验证码",notes = "")
+    @ApiOperation(value = "获取验证码" , notes = "")
     @PostMapping("/add_userapp")
     public Msg add_userapp(@RequestBody Map map) throws ClientException {
-        Msg msg=new Msg();
+        Msg msg = new Msg();
         setNewcode();
         String code = Integer.toString(getNewcode());
-        String phone=(String) map.get("username");
-        SendSmsResponse response =sendSms(phone,code);
+        String phone = (String) map.get("username");
+        SendSmsResponse response = sendSms(phone, code);
         System.out.println(response.getCode());
-        map.put("code",code);
-        Staff staff=userAppDao.findByUsername(map);
-        System.out.println("1:"+staff);
+        map.put("code" , code);
+        Staff staff = userAppDao.findByUsername(map);
+        System.out.println("1:" + staff);
         //判断账号是否存在
-        if (staff==null){
+        if (staff == null) {
             userAppDao.add_userapp(map);//不存在创建
-        }else {
+        } else {
             userAppDao.upd_code(map);//存在修改code
         }
         //根据短信返回的Code判断短信发送结果
-        if (response.getCode().equals("OK")){
+        if (response.getCode().equals("OK")) {
             msg.setMessage("验证码已发送");
             return msg;
-        }else if(response.getCode().equals("isv.MOBILE_NUMBER_ILLEGAL")){
+        } else if (response.getCode().equals("isv.MOBILE_NUMBER_ILLEGAL")) {
             msg.setMessage("无效号码");
             return msg;
-        }else {
+        } else {
             msg.setMessage("未知错误");
             return msg;
         }
@@ -85,42 +85,42 @@ public class UserAppController {
 
     }
 
-    @ApiOperation(value = "注册账号(完善账号信息)",notes = "")
+    @ApiOperation(value = "注册账号(完善账号信息)" , notes = "")
     @PostMapping("/complete_userapp")
-    public Msg complete_userapp(@RequestBody Map map){
+    public Msg complete_userapp(@RequestBody Map map) {
         System.out.println(map);
-        Msg msg=new Msg();
+        Msg msg = new Msg();
         setNickname();
-        String nickname=getNickname();
-        map.put("nickname",nickname);
-        Staff staff=userAppDao.findByUsername(map);
-        System.out.println("2:"+staff);
-        if (staff!=null){
-            if(staff.getCode().equals(map.get("code"))){
+        String nickname = getNickname();
+        map.put("nickname" , nickname);
+        Staff staff = userAppDao.findByUsername(map);
+        System.out.println("2:" + staff);
+        if (staff != null) {
+            if (staff.getCode().equals(map.get("code"))) {
                 userAppDao.complete_userapp(map);
                 msg.setMessage("注册成功");
                 return msg;
-            }else{
+            } else {
                 msg.setMessage("验证码错误");
                 return msg;
             }
-        }else {
+        } else {
             msg.setMessage("注册失败");
             return msg;
         }
 
     }
 
-    @ApiOperation(value = "忘记密码",notes = "")
+    @ApiOperation(value = "忘记密码" , notes = "")
     @PostMapping("forget_userapp")
-    public Msg forget_userapp(@RequestBody Map map){
-        Msg msg=new Msg();
-        Staff staff=userAppDao.findByUsername(map);
-        if(staff.getCode().equals(map.get("code"))){
+    public Msg forget_userapp(@RequestBody Map map) {
+        Msg msg = new Msg();
+        Staff staff = userAppDao.findByUsername(map);
+        if (staff.getCode().equals(map.get("code"))) {
             userAppDao.forget_userapp(map);
             msg.setMessage("修改成功");
             return msg;
-        }else{
+        } else {
             msg.setMessage("验证码错误");
             return msg;
         }

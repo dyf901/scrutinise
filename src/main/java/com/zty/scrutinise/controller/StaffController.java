@@ -26,10 +26,10 @@ public class StaffController {
     @Autowired
     private StaffDao staffDao;
 
-    @ApiOperation(value = "分页查询员工信息(行查后台)",notes = "测试数据:{\"pageNo\": 1, \"pageSize\":10}")
+    @ApiOperation(value = "分页查询员工信息(行查后台)" , notes = "测试数据:{\"pageNo\": 1, \"pageSize\":10}")
     @PostMapping("/find_staff")
-    public Page<Staff> find_staff(@RequestBody Map map){
-        Page<Staff> page=new Page<Staff>();
+    public Page<Staff> find_staff(@RequestBody Map map) {
+        Page<Staff> page = new Page<Staff>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
         page.setItems(staffDao.find_staff(map));
@@ -37,10 +37,10 @@ public class StaffController {
         return page;
     }
 
-    @ApiOperation(value = "分页查询员工信息(企业后台)",notes = "测试数据:{\"pageNo\": 1, \"pageSize\":10}")
+    @ApiOperation(value = "分页查询员工信息(企业后台)" , notes = "测试数据:{\"pageNo\": 1, \"pageSize\":10}")
     @PostMapping("/find_staffPc")
-    public Page<Staff> find_staffPc(@RequestBody Map map){
-        Page<Staff> page=new Page<Staff>();
+    public Page<Staff> find_staffPc(@RequestBody Map map) {
+        Page<Staff> page = new Page<Staff>();
         page.setPageNo((Integer) map.get("pageNo"));
         page.setPageSize((Integer) map.get("pageSize"));
         page.setTotal(staffDao.total_pc(map));
@@ -48,15 +48,15 @@ public class StaffController {
         return page;
     }
 
-    @ApiOperation(value = "实名认证",notes = "")
+    @ApiOperation(value = "实名认证" , notes = "")
     @PostMapping("/attestation_staff")
-    public Msg attestation_staff(@RequestBody Map map){
-        Msg msg=new Msg();
-        Staff staff=staffDao.find_staff_byusername(map);
-        if(staff.getStatus().equals("1")){
+    public Msg attestation_staff(@RequestBody Map map) {
+        Msg msg = new Msg();
+        Staff staff = staffDao.find_staff_byusername(map);
+        if (staff.getStatus().equals("1")) {
             msg.setMessage("已实名认证!");
             return msg;
-        }else{
+        } else {
             int i = staffDao.attestation_staff(map);
             if (i == 1) {
                 staffDao.upd_status(map);
@@ -158,7 +158,7 @@ public class StaffController {
         }
     }*/
 
-    @ApiOperation(value = "查找员工照片", notes = "测试数据:{\"img_url\":\"安全行为之星系统.pdf\"}")
+    @ApiOperation(value = "查找员工照片" , notes = "测试数据:{\"img_url\":\"安全行为之星系统.pdf\"}")
     @GetMapping("/find_img")
     public void find_img(@RequestParam String img_url, HttpServletResponse response) {
         try {
@@ -180,15 +180,15 @@ public class StaffController {
         }
     }
 
-    @ApiOperation(value = "修改个人资料(App)",notes = "")
+    @ApiOperation(value = "修改个人资料(App)" , notes = "")
     @PostMapping("/upd_staff_app")
-    public Msg upd_staff_app(@RequestBody Map map){
-        int i=staffDao.upd_staff_app(map);
+    public Msg upd_staff_app(@RequestBody Map map) {
+        int i = staffDao.upd_staff_app(map);
         Msg msg = new Msg();
-        if (i==1){
+        if (i == 1) {
             msg.setMessage("修改成功");
             return msg;
-        }else {
+        } else {
             msg.setMessage("修改失败");
             return msg;
         }
@@ -196,27 +196,27 @@ public class StaffController {
 
     }
 
-    @ApiOperation(value = "修改个人头像",notes = "")
+    @ApiOperation(value = "修改个人头像" , notes = "")
     @PostMapping("/upd_staff_picture")
-    public Msg upd_staff_picture(@RequestParam("file") MultipartFile file, Staff staff){
+    public Msg upd_staff_picture(@RequestParam("file") MultipartFile file, Staff staff) {
         Msg msg = new Msg();
-        Map map=new HashMap();
-        map.put("username",staff.getUsername());
+        Map map = new HashMap();
+        map.put("username" , staff.getUsername());
         String oldFileName = file.getOriginalFilename();
         int lastDotIndex = oldFileName.lastIndexOf(".");
         String extName = oldFileName.substring(lastDotIndex);
         String newName = UUID.randomUUID() + extName;
-        map.put("picture", newName);
+        map.put("picture" , newName);
         File excelFile =
                 new File("/root/img/"//   /root/img/
                         + newName);
         try {
             file.transferTo(excelFile);
-            int i=staffDao.upd_staff_picture(map);
-            if (i==1){
+            int i = staffDao.upd_staff_picture(map);
+            if (i == 1) {
                 msg.setMessage("修改成功");
                 return msg;
-            }else {
+            } else {
                 msg.setMessage("修改失败");
                 return msg;
             }

@@ -32,9 +32,10 @@
 
     <!--实名认证-->
     <update id="attestation_staff" parameterType="java.util.Map">
-        update staff set `sex`=#{sex},`name`=#{name},`card`=#{card},`age`=#{age},`address`=#{address} where username=#{username}
+        update staff set `sex`=#{sex},`name`=#{name},`card`=#{card},`age`=#{age},`address`=#{address} where
+        username=#{username}
     </update>
-    
+
     <!--修改实名认证状态-->
     <update id="upd_status" parameterType="java.util.Map">
         update staff set `status`=1 where username=#{username}

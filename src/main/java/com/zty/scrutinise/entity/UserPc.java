@@ -13,10 +13,10 @@ import org.apache.ibatis.annotations.Param;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserPc {
-    private int id,company_id;
-    private String username,password;
+    private int id, company_id;
+    private String username, password;
 
-    public UserPc(){
+    public UserPc() {
         super();
     }
 

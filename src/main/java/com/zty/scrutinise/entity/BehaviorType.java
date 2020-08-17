@@ -3,19 +3,19 @@ package com.zty.scrutinise.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
-* 行为类型实体类
-*
-* behavior_type   行为类型表
-* id   行为类型id
-* behavior_name   行为类型名称
-* state   状态
-* */
+ * 行为类型实体类
+ *
+ * behavior_type   行为类型表
+ * id   行为类型id
+ * behavior_name   行为类型名称
+ * state   状态
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BehaviorType {
     private int id;
-    private String behavior_name,state,remake;
+    private String behavior_name, state, remake;
 
-    public BehaviorType(){
+    public BehaviorType() {
         super();
     }
 

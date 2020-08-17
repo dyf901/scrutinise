@@ -14,12 +14,12 @@ public class RegistartionService implements RegistrationDao {
     private RegistrationDao registrationDao;
 
     //员工签到
-    public int add_registartion(Registration registration){
+    public int add_registartion(Registration registration) {
         return registrationDao.add_registartion(registration);
     }
 
     //员工签退
-    public int upd_registartion(Registration registration){
+    public int upd_registartion(Registration registration) {
         return registrationDao.upd_registartion(registration);
     }
 

@@ -1,26 +1,27 @@
 package com.zty.scrutinise.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 /*
-* 部门表实体类
-* department   部门表
-* id           部门id
-* cid   公司id
-* department_name    部门名称
-* department_number  部门编号
-* department_person  部门负责人
-* department_headphone  部门负责人电话
-* department_percount   部门人数
-* create_time   添加时间
-* remake   备注
-* state   状态
-* */
+ * 部门表实体类
+ * department   部门表
+ * id           部门id
+ * cid   公司id
+ * department_name    部门名称
+ * department_number  部门编号
+ * department_person  部门负责人
+ * department_headphone  部门负责人电话
+ * department_percount   部门人数
+ * create_time   添加时间
+ * remake   备注
+ * state   状态
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Department {
-    private int id,cid,department_percount;
-    private String department_name,department_number,department_person,department_headphone,create_time,state,remake;
+    private int id, cid, department_percount;
+    private String department_name, department_number, department_person, department_headphone, create_time, state, remake;
 
-    public Department(){
+    public Department() {
         super();
     }
 

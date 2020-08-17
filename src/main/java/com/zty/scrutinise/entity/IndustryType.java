@@ -3,19 +3,19 @@ package com.zty.scrutinise.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
-* 行业类型表实体类
-*
-* industry_type   行业类型表
-* id   行业类型id
-* industry_name   行业类型名称
-* state   状态
-* */
+ * 行业类型表实体类
+ *
+ * industry_type   行业类型表
+ * id   行业类型id
+ * industry_name   行业类型名称
+ * state   状态
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class IndustryType {
     private int id;
-    private String industry_name,state,remake;
+    private String industry_name, state, remake;
 
-    public IndustryType(){
+    public IndustryType() {
         super();
     }
 

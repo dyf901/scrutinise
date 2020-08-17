@@ -3,21 +3,21 @@ package com.zty.scrutinise.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
-* user_app表实体类
-*
-* user_app表
-* id    id
-* username   账号
-* password   密码
-* staff_id   员工id
-* picture    头像
-* */
+ * user_app表实体类
+ *
+ * user_app表
+ * id    id
+ * username   账号
+ * password   密码
+ * staff_id   员工id
+ * picture    头像
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserApp {
-    private int id,staff_id;
-    private String username,password,picture;
+    private int id, staff_id;
+    private String username, password, picture;
 
-    public UserApp(){
+    public UserApp() {
         super();
     }
 

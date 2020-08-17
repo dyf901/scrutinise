@@ -3,42 +3,42 @@ package com.zty.scrutinise.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /*
-* 员工信息表实体类
-*
-* staff   员工信息表
-* id   员工id
-* name   员工姓名
-* age    年龄
-* card   身份证号
-* phone   手机号
-* company_id   所在公司id
-* integral_up      正积分
-* integral_down     负积分
-* username     账号
-* password      密码
-* image_z     实名认证图片正面
-* image_f     实名认证图片反面
-* picture      头像
-* nickname    昵称
-* signature     个性签名
-* code      验证码
-* status     实名认证状态
-* state   在职状态
-* clockstatus   打卡状态
-*
-* state_int    饼图数据
-* */
+ * 员工信息表实体类
+ *
+ * staff   员工信息表
+ * id   员工id
+ * name   员工姓名
+ * age    年龄
+ * card   身份证号
+ * phone   手机号
+ * company_id   所在公司id
+ * integral_up      正积分
+ * integral_down     负积分
+ * username     账号
+ * password      密码
+ * image_z     实名认证图片正面
+ * image_f     实名认证图片反面
+ * picture      头像
+ * nickname    昵称
+ * signature     个性签名
+ * code      验证码
+ * status     实名认证状态
+ * state   在职状态
+ * clockstatus   打卡状态
+ *
+ * state_int    饼图数据
+ * */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Staff {
-    private int id,company_id,age;
-    private String name,sex,card,state;
-    private int integral_up,integral_down;
-    private String company_name,address;
-    private String password,picture,nickname,signature,code,status;
-    private String username,phone,clockstatus,abbreviation;
+    private int id, company_id, age;
+    private String name, sex, card, state;
+    private int integral_up, integral_down;
+    private String company_name, address;
+    private String password, picture, nickname, signature, code, status;
+    private String username, phone, clockstatus, abbreviation;
     private int state_int;
 
-    public Staff(){
+    public Staff() {
         super();
     }
 
